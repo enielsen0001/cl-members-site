@@ -1,0 +1,146 @@
+﻿@model memberSite.Models.UserDetailsModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserDetailsModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WebsiteURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebsiteURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GitHubURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GitHubURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LinkedinURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LinkedinURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pathToImg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pathToImg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pathToFile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pathToFile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.About)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FrontEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FrontEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DotNet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DotNet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RubyOnRails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RubyOnRails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.iOS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iOS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Android)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Android)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
