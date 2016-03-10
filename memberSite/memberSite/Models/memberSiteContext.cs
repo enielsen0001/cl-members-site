@@ -12,7 +12,11 @@ namespace memberSite.Models
         {
         }
 
-        public DbSet<UserDetailsModel> UserDetails
+        public DbSet<UserDetailsModel> UsersDetails
+        {
+            get; set;
+        }
+        public DbSet<CommentModel> Comments
         {
             get; set;
         }

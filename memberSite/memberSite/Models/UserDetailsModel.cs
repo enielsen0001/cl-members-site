@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace memberSite.Models
 {
@@ -8,6 +9,19 @@ namespace memberSite.Models
         {
             get; set;
         }
+
+        
+        
+        public string UserID
+        {
+            get; set;
+        }
+        
+        //[ForeignKey("UserID")]
+        //public virtual ApplicationUser User
+        //{
+        //    get; set;
+        //}
 
         [Required]
         [StringLength(25)]
@@ -53,14 +67,8 @@ namespace memberSite.Models
             get; set;
         }
 
-        [StringLength(150)]
-        public string pathToImg
-        {
-            get; set;
-        }
-
-        [StringLength(150)]
-        public string pathToFile
+        
+        public string EmailHash
         {
             get; set;
         }
@@ -71,38 +79,38 @@ namespace memberSite.Models
             get; set;
         }
 
-        [StringLength(50)]
-        public string FrontEnd
+        
+        public bool FrontEnd
         {
             get; set;
         }
 
-        [StringLength(50)]
-        public string PHP
+        
+        public bool PHP
         {
             get; set;
         }
 
-        [StringLength(50)]
-        public string DotNet
+        
+        public bool DotNet
         {
             get; set;
         }
 
-        [StringLength(50)]
-        public string RubyOnRails
+        
+        public bool RubyOnRails
         {
             get; set;
         }
 
-        [StringLength(50)]
-        public string iOS
+        
+        public bool iOS
         {
             get; set;
         }
 
-        [StringLength(50)]
-        public string Android
+        
+        public bool Android
         {
             get; set;
         }

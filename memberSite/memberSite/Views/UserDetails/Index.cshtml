@@ -9,8 +9,19 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+    <h2>@ViewBag.Message</h2>
+
 <table class="table">
     <tr>
+        <th>
+            Avatar
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailHash)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
@@ -31,12 +42,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LinkedinURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pathToImg)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pathToFile)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.About)
@@ -65,6 +70,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            <img src="http://www.gravatar.com/avatar/@Html.DisplayFor(modelItem =>item.EmailHash)?d=mm" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailHash)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
@@ -86,10 +100,7 @@
             @Html.DisplayFor(modelItem => item.LinkedinURL)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.pathToImg)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pathToFile)
+            @Html.DisplayFor(modelItem => item.EmailHash)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.About)

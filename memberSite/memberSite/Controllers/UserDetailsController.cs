@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using memberSite.Models;
+using Microsoft.AspNet.Identity;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web.Mvc;
-using memberSite.Models;
 
 namespace memberSite.Controllers
 {
+    [Authorize]
     public class UserDetailsController : Controller
     {
         private MemberSiteDB db = new MemberSiteDB();
@@ -17,7 +18,8 @@ namespace memberSite.Controllers
         // GET: UserDetailsModels
         public ActionResult Index()
         {
-            return View(db.UserDetails.ToList());
+            ViewBag.Message = TempData["ErrorMessage"];
+            return View(db.UsersDetails.ToList());
         }
 
         // GET: UserDetailsModels/Details/5
@@ -27,7 +29,7 @@ namespace memberSite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDetailsModel userDetailsModel = db.UserDetails.Find(id);
+            UserDetailsModel userDetailsModel = db.UsersDetails.Find(id);
             if (userDetailsModel == null)
             {
                 return HttpNotFound();
@@ -42,17 +44,36 @@ namespace memberSite.Controllers
         }
 
         // POST: UserDetailsModels/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,FirstName,LastName,PhoneNumber,Email,WebsiteURL,GitHubURL,LinkedinURL,pathToImg,pathToFile,About,FrontEnd,PHP,DotNet,RubyOnRails,iOS,Android")] UserDetailsModel userDetailsModel)
+        public ActionResult Create([Bind(Include = "ID,UserID, FirstName,LastName,PhoneNumber,Email,WebsiteURL,GitHubURL,LinkedinURL,pathToImg,pathToFile,About,FrontEnd,PHP,DotNet,RubyOnRails,iOS,Android")] UserDetailsModel userDetailsModel)
         {
-            if (ModelState.IsValid)
+            if ((ModelState.IsValid) && (!db.UsersDetails.Any(s => s.Email == userDetailsModel.Email)))
             {
-                db.UserDetails.Add(userDetailsModel);
+                string user_id = User.Identity.GetUserId();
+                string unhashedEmail = userDetailsModel.Email.Trim().ToLower();
+
+                userDetailsModel.EmailHash = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(unhashedEmail)).Select(s => s.ToString("x2")));
+                userDetailsModel.UserID = user_id;
+
+                db.UsersDetails.Add(userDetailsModel);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                if (db.UsersDetails.Any(s => s.Email == userDetailsModel.Email))
+                {
+                    ViewBag.Message = "A profile with that email already exists, please choose another or edit the original profile";
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.Message = "Something is incorrect with your entered information, come up with a better message later";
+                }
             }
 
             return View(userDetailsModel);
@@ -65,21 +86,32 @@ namespace memberSite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDetailsModel userDetailsModel = db.UserDetails.Find(id);
+            UserDetailsModel userDetailsModel = db.UsersDetails.Find(id);
             if (userDetailsModel == null)
             {
                 return HttpNotFound();
             }
+            if (userDetailsModel.UserID != User.Identity.GetUserId())
+            {
+                var editErrorMessage = "Why are you trying to mess with other people's stuff?!";
+                TempData["ErrorMessage"] = editErrorMessage;
+                return RedirectToAction("Index");
+            }
+
             return View(userDetailsModel);
         }
 
         // POST: UserDetailsModels/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,PhoneNumber,Email,WebsiteURL,GitHubURL,LinkedinURL,pathToImg,pathToFile,About,FrontEnd,PHP,DotNet,RubyOnRails,iOS,Android")] UserDetailsModel userDetailsModel)
         {
+            string unhashedEmail = userDetailsModel.Email.Trim().ToLower();
+
+            userDetailsModel.EmailHash = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(unhashedEmail)).Select(s => s.ToString("x2")));
+
             if (ModelState.IsValid)
             {
                 db.Entry(userDetailsModel).State = EntityState.Modified;
@@ -96,10 +128,16 @@ namespace memberSite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDetailsModel userDetailsModel = db.UserDetails.Find(id);
+            UserDetailsModel userDetailsModel = db.UsersDetails.Find(id);
             if (userDetailsModel == null)
             {
                 return HttpNotFound();
+            }
+            if (userDetailsModel.UserID != User.Identity.GetUserId())
+            {
+                var deleteErrorMessage = "Why are you trying to mess with other people's stuff?!";
+                TempData["ErrorMessage"] = deleteErrorMessage;
+                RedirectToAction("Index");
             }
             return View(userDetailsModel);
         }
@@ -109,8 +147,8 @@ namespace memberSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            UserDetailsModel userDetailsModel = db.UserDetails.Find(id);
-            db.UserDetails.Remove(userDetailsModel);
+            UserDetailsModel userDetailsModel = db.UsersDetails.Find(id);
+            db.UsersDetails.Remove(userDetailsModel);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
