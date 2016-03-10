@@ -6,39 +6,35 @@ using System.Web;
 
 namespace memberSite.Models
 {
-    public class CommentModel
+    public class Comment
     {
         public int ID
         {
             get; set;
         }
 
-        public virtual UserDetailsModel UserID
+        public string RegisteredUserID
         {
             get; set;
         }
 
-        public virtual UserDetailsModel FirstName
+        [ForeignKey("RegisteredUserID")]
+        public virtual UserDetails userDetail
         {
             get; set;
         }
 
-        public virtual UserDetailsModel LastName
+        public string Date
         {
             get; set;
         }
 
-        public virtual UserDetailsModel EmailHash
+        public string Subject
         {
             get; set;
         }
 
-        public DateTime Date
-        {
-            get; set;
-        }
-
-        public string Comment
+        public string CommentText
         {
             get; set;
         }

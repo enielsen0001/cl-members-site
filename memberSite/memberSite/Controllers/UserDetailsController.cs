@@ -29,7 +29,7 @@ namespace memberSite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDetailsModel userDetailsModel = db.UsersDetails.Find(id);
+            UserDetails userDetailsModel = db.UsersDetails.Find(id);
             if (userDetailsModel == null)
             {
                 return HttpNotFound();
@@ -40,6 +40,7 @@ namespace memberSite.Controllers
         // GET: UserDetailsModels/Create
         public ActionResult Create()
         {
+            ViewBag.Message = TempData["ErrorMessage"];
             return View();
         }
 
@@ -48,15 +49,16 @@ namespace memberSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,UserID, FirstName,LastName,PhoneNumber,Email,WebsiteURL,GitHubURL,LinkedinURL,pathToImg,pathToFile,About,FrontEnd,PHP,DotNet,RubyOnRails,iOS,Android")] UserDetailsModel userDetailsModel)
+        public ActionResult Create([Bind(Include = "ID, FirstName,LastName,PhoneNumber,Email,WebsiteURL,GitHubURL,LinkedinURL,pathToImg,pathToFile,About,FrontEnd,PHP,DotNet,RubyOnRails,iOS,Android")] UserDetails userDetailsModel)
         {
+
             if ((ModelState.IsValid) && (!db.UsersDetails.Any(s => s.Email == userDetailsModel.Email)))
             {
                 string user_id = User.Identity.GetUserId();
                 string unhashedEmail = userDetailsModel.Email.Trim().ToLower();
 
                 userDetailsModel.EmailHash = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(unhashedEmail)).Select(s => s.ToString("x2")));
-                userDetailsModel.UserID = user_id;
+                userDetailsModel.RegisteredUserID = user_id;
 
                 db.UsersDetails.Add(userDetailsModel);
                 db.SaveChanges();
@@ -67,12 +69,14 @@ namespace memberSite.Controllers
             {
                 if (db.UsersDetails.Any(s => s.Email == userDetailsModel.Email))
                 {
-                    ViewBag.Message = "A profile with that email already exists, please choose another or edit the original profile";
+                    var existingUserErrorMessage = "A profile with that email already exists, please choose another or edit the original profile";
+                    TempData["ErrorMessage"] = existingUserErrorMessage;
                 }
 
                 if (!ModelState.IsValid)
                 {
-                    ViewBag.Message = "Something is incorrect with your entered information, come up with a better message later";
+                    var invalidModelErrorMessage = "Something is incorrect with your entered information, come up with a better message later";
+                    TempData["ErrorMessage"] = invalidModelErrorMessage;
                 }
             }
 
@@ -86,12 +90,12 @@ namespace memberSite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDetailsModel userDetailsModel = db.UsersDetails.Find(id);
+            UserDetails userDetailsModel = db.UsersDetails.Find(id);
             if (userDetailsModel == null)
             {
                 return HttpNotFound();
             }
-            if (userDetailsModel.UserID != User.Identity.GetUserId())
+            if (userDetailsModel.RegisteredUserID != User.Identity.GetUserId())
             {
                 var editErrorMessage = "Why are you trying to mess with other people's stuff?!";
                 TempData["ErrorMessage"] = editErrorMessage;
@@ -106,7 +110,7 @@ namespace memberSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,PhoneNumber,Email,WebsiteURL,GitHubURL,LinkedinURL,pathToImg,pathToFile,About,FrontEnd,PHP,DotNet,RubyOnRails,iOS,Android")] UserDetailsModel userDetailsModel)
+        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,PhoneNumber,Email,WebsiteURL,GitHubURL,LinkedinURL,pathToImg,pathToFile,About,FrontEnd,PHP,DotNet,RubyOnRails,iOS,Android")] UserDetails userDetailsModel)
         {
             string unhashedEmail = userDetailsModel.Email.Trim().ToLower();
 
@@ -128,12 +132,12 @@ namespace memberSite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserDetailsModel userDetailsModel = db.UsersDetails.Find(id);
+            UserDetails userDetailsModel = db.UsersDetails.Find(id);
             if (userDetailsModel == null)
             {
                 return HttpNotFound();
             }
-            if (userDetailsModel.UserID != User.Identity.GetUserId())
+            if (userDetailsModel.RegisteredUserID != User.Identity.GetUserId())
             {
                 var deleteErrorMessage = "Why are you trying to mess with other people's stuff?!";
                 TempData["ErrorMessage"] = deleteErrorMessage;
@@ -147,7 +151,7 @@ namespace memberSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            UserDetailsModel userDetailsModel = db.UsersDetails.Find(id);
+            UserDetails userDetailsModel = db.UsersDetails.Find(id);
             db.UsersDetails.Remove(userDetailsModel);
             db.SaveChanges();
             return RedirectToAction("Index");

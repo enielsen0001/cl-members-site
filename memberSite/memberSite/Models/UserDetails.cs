@@ -1,27 +1,30 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace memberSite.Models
 {
-    public class UserDetailsModel
+    public class UserDetails
     {
+        public UserDetails()
+        {
+            Comments = new List<Comment>();
+        }
+
+        public virtual ICollection<Comment> Comments
+        {
+            get; set;
+        }
+
         public int ID
         {
             get; set;
         }
 
-        
-        
-        public string UserID
+        public string RegisteredUserID
         {
             get; set;
         }
-        
-        //[ForeignKey("UserID")]
-        //public virtual ApplicationUser User
-        //{
-        //    get; set;
-        //}
 
         [Required]
         [StringLength(25)]
@@ -114,5 +117,7 @@ namespace memberSite.Models
         {
             get; set;
         }
+
+       
     }
 }

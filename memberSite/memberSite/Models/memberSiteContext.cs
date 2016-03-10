@@ -12,14 +12,23 @@ namespace memberSite.Models
         {
         }
 
-        public DbSet<UserDetailsModel> UsersDetails
+        public DbSet<UserDetails> UsersDetails
         {
             get; set;
         }
-        public DbSet<CommentModel> Comments
+        public DbSet<Comment> Comments
         {
             get; set;
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //one-to-many 
+            modelBuilder.Entity<Comment>()
+                        .HasOptional(s => s.userDetail)
+                        .WithMany(s => s.Comments)
+                        .HasForeignKey(s => s.RegisteredUserID);
+
+        }
     }
 }
