@@ -5,12 +5,21 @@
 }
 
 <h2>Index</h2>
+<h2>@ViewBag.Message</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userDetail.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userDetail.LastName)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Date)
         </th>
@@ -23,23 +32,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CommentText)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><img src="http://www.gravatar.com/avatar/@Html.DisplayFor(modelItem =>item.userDetail.EmailHash)?d=mm" /></td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userDetail.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userDetail.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommentText)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new
+       {
+           id = item.ID
+       }) |
+                @Html.ActionLink("Details", "Details", new
+       {
+           id = item.ID
+       }) |
+                @Html.ActionLink("Delete", "Delete", new
+       {
+           id = item.ID
+       })
+            </td>
+        </tr>
+    }
 </table>

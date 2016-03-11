@@ -20,15 +20,5 @@ namespace memberSite.Models
         {
             get; set;
         }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            //one-to-many 
-            modelBuilder.Entity<Comment>()
-                        .HasOptional(s => s.userDetail)
-                        .WithMany(s => s.Comments)
-                        .HasForeignKey(s => s.RegisteredUserID);
-
-        }
     }
 }

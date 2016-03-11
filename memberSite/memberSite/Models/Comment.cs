@@ -18,7 +18,6 @@ namespace memberSite.Models
             get; set;
         }
 
-        [ForeignKey("RegisteredUserID")]
         public virtual UserDetails userDetail
         {
             get; set;

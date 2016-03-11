@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace memberSite.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class CommentController : Controller
     {
         private MemberSiteDB db = new MemberSiteDB();
@@ -17,6 +17,7 @@ namespace memberSite.Controllers
         // GET: CommentModels
         public ActionResult Index()
         {
+            ViewBag.Message = TempData["ErrorMessage"];
             return View(db.Comments.ToList());
         }
 
@@ -54,24 +55,15 @@ namespace memberSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Date,Subject,Comment")] Comment commentModel)
+        public ActionResult Create([Bind(Include = "ID,Date,Subject,Comment,CommentText")] Comment commentModel)
         {
             var user_id = User.Identity.GetUserId();
             //assign datetime
             commentModel.Date = DateTime.Now.ToString("MM/dd/yyyy");
             //assign userid
-            //commentModel.UserID = User.Identity.GetUserId();
+            commentModel.RegisteredUserID = User.Identity.GetUserId();
 
-            //join tables on userid
-
-            //var userDetails = db.UsersDetails.ToList();
-            //var userinfo = userDetails.Where(s => s.UserID == commentModel.UserID).SingleOrDefault();
-
-            //if (userinfo != null)
-            //{
-                
-                
-            //}
+            commentModel.userDetail = db.UsersDetails.Where(x => x.RegisteredUserID == commentModel.RegisteredUserID).SingleOrDefault();
 
             if (ModelState.IsValid)
             {
@@ -95,6 +87,12 @@ namespace memberSite.Controllers
             {
                 return HttpNotFound();
             }
+            if (commentModel.RegisteredUserID != User.Identity.GetUserId())
+            {
+                var editErrorMessage = "Why are you trying to mess with other people's stuff?!";
+                TempData["ErrorMessage"] = editErrorMessage;
+                return RedirectToAction("Index");
+            }
             return View(commentModel);
         }
 
@@ -103,7 +101,7 @@ namespace memberSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Date,Subject,Comment")] Comment commentModel)
+        public ActionResult Edit([Bind(Include = "ID,Date,Subject,Comment,CommentText")] Comment commentModel)
         {
             if (ModelState.IsValid)
             {
@@ -125,6 +123,12 @@ namespace memberSite.Controllers
             if (commentModel == null)
             {
                 return HttpNotFound();
+            }
+            if (commentModel.RegisteredUserID != User.Identity.GetUserId())
+            {
+                var editErrorMessage = "Why are you trying to mess with other people's stuff?!";
+                TempData["ErrorMessage"] = editErrorMessage;
+                return RedirectToAction("Index");
             }
             return View(commentModel);
         }
