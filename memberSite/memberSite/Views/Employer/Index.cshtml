@@ -5,26 +5,20 @@
 }
 
 <h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-    <h2>@ViewBag.Message</h2>
 <form method="get">
     <input type="search" name="searchTerm" />
     <input type="submit" value="Search By Name" />
 
 </form>
+<div>
+    <a href="@Url.Action("Index", new { trackFilter = "FrontEnd" })"><img src="~/images/Hydrangeas.jpg" /></a> 
+    
+    
+</div>
 <table class="table">
     <tr>
         <th>
-            Avatar
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.First().RegisteredUserID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmailHash)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().FirstName)
@@ -46,6 +40,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().LinkedinURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().EmailHash)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.First().About)
@@ -74,13 +71,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <img src="http://www.gravatar.com/avatar/@Html.DisplayFor(modelItem =>item.EmailHash)?d=mm" />
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.RegisteredUserID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailHash)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
@@ -108,6 +99,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.AboutTrimmed)
+            
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FrontEnd)
@@ -127,36 +119,36 @@
         <td>
             @Html.DisplayFor(modelItem => item.Android)
         </td>
-        <td>@if (item.FrontEnd == true)
-        {
-            <img src="~/images/Hydrangeas.jpg" />
-        }
-        @if (item.PHP == true)
-        {
-            <img src="~/images/Hydrangeas.jpg" />
-        }
-        @if (item.DotNet == true)
-        {
-            <img src="~/images/Hydrangeas.jpg" />
-        }
-        @if (item.RubyOnRails == true)
-        {
-            <img src="~/images/Hydrangeas.jpg" />
-        }
-        @if (item.iOS == true)
-        {
-            <img src="~/images/Hydrangeas.jpg" />
-        }
-        @if (item.Android == true)
-        {
-            <img src="~/images/Hydrangeas.jpg" />
-        }</td>
-        
-
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @if (item.FrontEnd == true)
+            {
+                <img src="~/images/Hydrangeas.jpg" />
+            }
+            @if (item.PHP == true)
+            {
+                <img src="~/images/Hydrangeas.jpg" />
+            }
+            @if (item.DotNet == true)
+            {
+                <img src="~/images/Hydrangeas.jpg" />
+            }
+            @if (item.RubyOnRails == true)
+            {
+                <img src="~/images/Hydrangeas.jpg" />
+            }
+            @if (item.iOS == true)
+            {
+                <img src="~/images/Hydrangeas.jpg" />
+            }
+            @if (item.Android == true)
+            {
+                <img src="~/images/Hydrangeas.jpg" />
+            }
+        </td>
+        <td>
+            
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) 
+            
         </td>
     </tr>
 }

@@ -55,3 +55,7 @@ C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberS
 C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite.Tests\obj\Debug\memberSite.Tests.pdb
 C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite.Tests\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite.Tests\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite.Tests\bin\Debug\PagedList.dll
+C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite.Tests\bin\Debug\PagedList.Mvc.dll
+C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite.Tests\bin\Debug\PagedList.xml
+C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite.Tests\bin\Debug\PagedList.Mvc.xml

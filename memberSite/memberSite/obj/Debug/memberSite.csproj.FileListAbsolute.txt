@@ -69,3 +69,7 @@ C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberS
 C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite\obj\Debug\memberSite.pdb
 C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite\obj\Debug\memberSite.Migrations.firstMigration.resources
 C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite\obj\Debug\memberSite.csproj.GenerateResource.Cache
+C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite\bin\PagedList.dll
+C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite\bin\PagedList.Mvc.dll
+C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite\bin\PagedList.xml
+C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite\bin\PagedList.Mvc.xml

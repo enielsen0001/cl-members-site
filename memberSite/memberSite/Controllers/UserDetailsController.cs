@@ -1,5 +1,7 @@
 ﻿using memberSite.Models;
 using Microsoft.AspNet.Identity;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -7,6 +9,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Mvc;
+using PagedList;
 
 namespace memberSite.Controllers
 {
@@ -16,10 +19,45 @@ namespace memberSite.Controllers
         private MemberSiteDB db = new MemberSiteDB();
 
         // GET: UserDetailsModels
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, int? page, string searchTerm = null)
         {
+             
             ViewBag.Message = TempData["ErrorMessage"];
-            return View(db.UsersDetails.ToList());
+
+            //pagination
+            if (searchTerm != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchTerm = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchTerm;
+
+            //query db
+            var searchResults = new List<UserDetails>();
+            if (!String.IsNullOrEmpty(searchTerm))
+            {
+                page = 1;
+
+                //split search strings
+                var searchStrings = searchTerm.Split(' ');
+                foreach (var searchString in searchStrings)
+                {
+                    searchResults.Add(db.UsersDetails.FirstOrDefault(s => s.About.Contains(searchString) || s.FirstName.Contains(searchString) || s.LastName.Contains(searchString)));
+                }
+            }
+            else
+            {
+                //return alphabetized list if no search term
+                searchResults = db.UsersDetails.OrderBy(s => s.LastName).ToList();
+            }
+
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            return View(searchResults.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: UserDetailsModels/Details/5
@@ -71,6 +109,7 @@ namespace memberSite.Controllers
                 {
                     var existingUserErrorMessage = "A profile with that email already exists, please choose another or edit the original profile";
                     TempData["ErrorMessage"] = existingUserErrorMessage;
+
                 }
 
                 if (!ModelState.IsValid)
@@ -78,6 +117,7 @@ namespace memberSite.Controllers
                     var invalidModelErrorMessage = "Something is incorrect with your entered information, come up with a better message later";
                     TempData["ErrorMessage"] = invalidModelErrorMessage;
                 }
+                return RedirectToAction("Create");
             }
 
             return View(userDetailsModel);

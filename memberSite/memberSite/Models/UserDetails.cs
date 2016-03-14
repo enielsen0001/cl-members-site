@@ -118,6 +118,23 @@ namespace memberSite.Models
             get; set;
         }
 
-       
+
+        //How long do you want your property to be at most ?
+        //(Best practice advices against magic numbers)
+        private int AboutLimit = 200;
+
+        
+        //and let this property mimic the "full" one  
+        [Display(Name = "About")]
+        public string AboutTrimmed
+        {
+            get
+            {
+                if (this.About.Length > this.AboutLimit)
+                    return this.About.Substring(0, this.AboutLimit) + "...";
+                else
+                    return this.About;
+            }
+        }
     }
 }
