@@ -12,62 +12,92 @@
 <h2>@ViewBag.Message</h2>
 <form method="get">
     <input type="search" name="searchTerm" />
-    <input type="submit" value="Search By Name" />
+    <input type="submit" value="Search" class="btn btn-info" />
 </form>
-
-@foreach (var item in Model)
-{
-    <div class="indexList">
-        <img src="http://www.gravatar.com/avatar/@Html.DisplayFor(modelItem =>item.EmailHash)?d=mm" />
-        <ul>
-            <li>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</li>
-            <li>@Html.DisplayFor(modelItem => item.Email)</li>
-            <li>@Html.DisplayFor(modelItem => item.GitHubURL)</li>
-            <li>@Html.DisplayFor(modelItem => item.AboutTrimmed)</li>
-        </ul>
-        <div class="badges">
-
-            @if (item.FrontEnd == true)
-                {
-                <img src="~/images/Hydrangeas.jpg" />
-            }
-            @if (item.PHP == true)
-                {
-                <img src="~/images/Hydrangeas.jpg" />
-            }
-            @if (item.DotNet == true)
-                {
-                <img src="~/images/Hydrangeas.jpg" />
-            }
-            @if (item.RubyOnRails == true)
-                {
-                <img src="~/images/Hydrangeas.jpg" />
-            }
-            @if (item.iOS == true)
-                {
-                <img src="~/images/Hydrangeas.jpg" />
-            }
-            @if (item.Android == true)
-                {
-                <img src="~/images/Hydrangeas.jpg" />
-            }
-        </div>
-        <div role="navigation" class="eddLinks">
-            @Html.ActionLink("Edit", "Edit", new
+<section class="indexList">
+    @foreach (var item in Model)
+    {
+        <div class="itemWrapper row">
+            <hr />
+            <div class="col-sm-2">
+                <img  src="http://www.gravatar.com/avatar/@Html.DisplayFor(modelItem =>item.EmailHash)?d=mm" />
+                <div role="navigation" class="eddLinks hidden-xs">
+                    @Html.ActionLink("See Full Profile", "Details", new
            {
                id = item.ID
-           }) |
-            @Html.ActionLink("Details", "Details", new
+           }, new
            {
-               id = item.ID
-           }) |
-            @Html.ActionLink("Delete", "Delete", new
-           {
-               id = item.ID
+               @class = "btn btn-info"
            })
+
+                    @Html.ActionLink("Edit", "Edit", new
+       {
+           id = item.ID
+       })
+
+                    @Html.ActionLink("Delete", "Delete", new
+       {
+           id = item.ID
+       })
+                </div>
+            </div class="col-sm-2">
+
+            <div class="col-sm-10">
+                <ul>
+                    <li>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</li>
+                    <li>@Html.DisplayFor(modelItem => item.Email)</li>
+                    <li>@Html.DisplayFor(modelItem => item.GitHubURL)</li>
+                    <li>@Html.DisplayFor(modelItem => item.AboutTrimmed)</li>
+                </ul>
+                <div class="badges">
+
+                    @if (item.FrontEnd == true)
+                {
+                        <img src="~/images/Hydrangeas.jpg" />
+                    }
+                    @if (item.PHP == true)
+                {
+                        <img src="~/images/Hydrangeas.jpg" />
+                    }
+                    @if (item.DotNet == true)
+                {
+                        <img src="~/images/Hydrangeas.jpg" />
+                    }
+                    @if (item.RubyOnRails == true)
+                {
+                        <img src="~/images/Hydrangeas.jpg" />
+                    }
+                    @if (item.iOS == true)
+                {
+                        <img src="~/images/Hydrangeas.jpg" />
+                    }
+                    @if (item.Android == true)
+                {
+                        <img src="~/images/Hydrangeas.jpg" />
+                    }
+                </div>
+                <div role="navigation" class="eddLinks  visible-xs">@Html.ActionLink("See Full Profile", "Details", new
+                                                   {
+                                                       id = item.ID
+                                                   }, new
+                                                   {
+                                                       @class = "btn btn-info"
+                                                   })
+                
+                    @Html.ActionLink("Edit", "Edit", new
+               {
+                   id = item.ID
+               }) 
+                  
+                    @Html.ActionLink("Delete", "Delete", new
+               {
+                   id = item.ID
+               })
+                </div>
+            </div>
         </div>
-    </div>
-}
+    }
+</section>
 
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 

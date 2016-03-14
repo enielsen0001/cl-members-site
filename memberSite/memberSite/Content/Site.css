@@ -1,16 +1,22 @@
-﻿body {
+﻿@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700|Didact+Gothic);
+
+); body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Didact Gothic', sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    /*width:85%;
+    margin-right:auto;
+    margin-left:auto;*/
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
@@ -24,7 +30,58 @@ textarea {
 }
 
 /*style the index pages*/
-.indexList img{
-    float: left;
+.body-content {
+    display: block;
+}
+
+@media(Max-width: @screen-xs) {
+    .itemWrapper > img {
+        width: 60%;
+        margin-right: auto;
+        margin-left: auto;
+        clear: both;
+        display: block;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .eddLinks a:first-child {
+        font-size: medium;
+    }
+
+    .eddLinks {
+        font-weight: bold;
+    }
+}
+
+.itemWrapper div ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+    .itemWrapper div ul li:first-child {
+        font-size: medium;
+        font-weight: bold;
+        font-family: 'Ubuntu', sans-serif;
+    }
+
+.itemWrapper {
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+.badges img {
+    padding: 3px 3px;
+}
+
+
+.eddLinks {
+    
+   width:100%;
+    max-width: 125px;
+    display: block;
+    font-family: 'Ubuntu', sans-serif;
 }
 
