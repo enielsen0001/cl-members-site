@@ -20,5 +20,10 @@ namespace memberSite.Models
         {
             get; set;
         }
+
+        public System.Data.Entity.DbSet<memberSite.Models.JobPost> JobPosts
+        {
+            get; set;
+        }
     }
 }

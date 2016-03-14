@@ -119,12 +119,9 @@ namespace memberSite.Models
         }
 
 
-        //How long do you want your property to be at most ?
-        //(Best practice advices against magic numbers)
+       //create create faux "About" field for index page display
         private int AboutLimit = 200;
 
-        
-        //and let this property mimic the "full" one  
         [Display(Name = "About")]
         public string AboutTrimmed
         {

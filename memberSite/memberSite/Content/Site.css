@@ -22,3 +22,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*style the index pages*/
+.indexList img{
+    float: left;
+}
+

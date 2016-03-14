@@ -9,163 +9,69 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-    <h2>@ViewBag.Message</h2>
+<h2>@ViewBag.Message</h2>
 <form method="get">
     <input type="search" name="searchTerm" />
     <input type="submit" value="Search By Name" />
-
 </form>
-<table class="table">
-    <tr>
-        <th>
-            Avatar
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().RegisteredUserID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmailHash)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().WebsiteURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().GitHubURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().LinkedinURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().About)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().FrontEnd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().PHP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().DotNet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().RubyOnRails)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().iOS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Android)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img src="http://www.gravatar.com/avatar/@Html.DisplayFor(modelItem =>item.EmailHash)?d=mm" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegisteredUserID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailHash)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WebsiteURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GitHubURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LinkedinURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailHash)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AboutTrimmed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FrontEnd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PHP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DotNet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RubyOnRails)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.iOS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Android)
-        </td>
-        <td>@if (item.FrontEnd == true)
-        {
-            <img src="~/images/Hydrangeas.jpg" />
-        }
-        @if (item.PHP == true)
-        {
-            <img src="~/images/Hydrangeas.jpg" />
-        }
-        @if (item.DotNet == true)
-        {
-            <img src="~/images/Hydrangeas.jpg" />
-        }
-        @if (item.RubyOnRails == true)
-        {
-            <img src="~/images/Hydrangeas.jpg" />
-        }
-        @if (item.iOS == true)
-        {
-            <img src="~/images/Hydrangeas.jpg" />
-        }
-        @if (item.Android == true)
-        {
-            <img src="~/images/Hydrangeas.jpg" />
-        }</td>
-        
+@foreach (var item in Model)
+{
+    <div class="indexList">
+        <img src="http://www.gravatar.com/avatar/@Html.DisplayFor(modelItem =>item.EmailHash)?d=mm" />
+        <ul>
+            <li>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</li>
+            <li>@Html.DisplayFor(modelItem => item.Email)</li>
+            <li>@Html.DisplayFor(modelItem => item.GitHubURL)</li>
+            <li>@Html.DisplayFor(modelItem => item.AboutTrimmed)</li>
+        </ul>
+        <div class="badges">
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+            @if (item.FrontEnd == true)
+                {
+                <img src="~/images/Hydrangeas.jpg" />
+            }
+            @if (item.PHP == true)
+                {
+                <img src="~/images/Hydrangeas.jpg" />
+            }
+            @if (item.DotNet == true)
+                {
+                <img src="~/images/Hydrangeas.jpg" />
+            }
+            @if (item.RubyOnRails == true)
+                {
+                <img src="~/images/Hydrangeas.jpg" />
+            }
+            @if (item.iOS == true)
+                {
+                <img src="~/images/Hydrangeas.jpg" />
+            }
+            @if (item.Android == true)
+                {
+                <img src="~/images/Hydrangeas.jpg" />
+            }
+        </div>
+        <div role="navigation" class="eddLinks">
+            @Html.ActionLink("Edit", "Edit", new
+           {
+               id = item.ID
+           }) |
+            @Html.ActionLink("Details", "Details", new
+           {
+               id = item.ID
+           }) |
+            @Html.ActionLink("Delete", "Delete", new
+           {
+               id = item.ID
+           })
+        </div>
+    </div>
 }
 
-</table>
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-@Html.PagedListPager(Model, page => Url.Action("Index",
+        @Html.PagedListPager(Model, page => Url.Action("Index",
     new
     {
         page,

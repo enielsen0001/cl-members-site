@@ -1,6 +1,8 @@
 ﻿using memberSite.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -15,10 +17,47 @@ namespace memberSite.Controllers
         private MemberSiteDB db = new MemberSiteDB();
 
         // GET: CommentModels
-        public ActionResult Index()
+        public ActionResult Index(string currentFilter, int? page, string searchTerm = null)
         {
+
             ViewBag.Message = TempData["ErrorMessage"];
-            return View(db.Comments.ToList());
+
+            //pagination
+            if (searchTerm != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchTerm = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchTerm;
+
+            //query db from textbox string
+            var searchResults = new List<Comment>();
+            if (!String.IsNullOrEmpty(searchTerm))
+            {
+                page = 1;
+
+                //split search strings
+                var searchStrings = searchTerm.Split(' ');
+                foreach (var searchString in searchStrings)
+                {
+                    searchResults.Add(db.Comments.FirstOrDefault(s => s.Subject.Contains(searchString) || s.CommentText.Contains(searchString) || s.userDetail.FirstName.Contains(searchString) || s.userDetail.LastName.Contains(searchString)));
+                }
+
+                searchResults.OrderBy(s => s.Date);
+            }
+            else
+            {
+                //return alphabetized list if no search term
+                searchResults = db.Comments.OrderBy(s => s.Date).ToList();
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(searchResults.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: CommentModels/Details/5

@@ -179,6 +179,7 @@
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\EmployerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobPostsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserDetailsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,10 +189,19 @@
     <Compile Include="Migrations\201603111520061_firstMigration.Designer.cs">
       <DependentUpon>201603111520061_firstMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603141637191_addedJobPost.cs" />
+    <Compile Include="Migrations\201603141637191_addedJobPost.Designer.cs">
+      <DependentUpon>201603141637191_addedJobPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603141646455_Added Company.cs" />
+    <Compile Include="Migrations\201603141646455_Added Company.Designer.cs">
+      <DependentUpon>201603141646455_Added Company.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\JobPost.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\memberSiteContext.cs" />
     <Compile Include="Models\UserDetails.cs" />
@@ -266,6 +276,12 @@
     <Content Include="Views\Comment\Edit.cshtml" />
     <Content Include="Views\Comment\Index.cshtml" />
     <Content Include="Views\Employer\Index.cshtml" />
+    <Content Include="Views\JobPosts\Create.cshtml" />
+    <Content Include="Views\JobPosts\Delete.cshtml" />
+    <Content Include="Views\JobPosts\Details.cshtml" />
+    <Content Include="Views\JobPosts\Edit.cshtml" />
+    <Content Include="Views\JobPosts\Index.cshtml" />
+    <Content Include="Views\Shared\_AuthorizedLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -282,6 +298,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603111520061_firstMigration.resx">
       <DependentUpon>201603111520061_firstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603141637191_addedJobPost.resx">
+      <DependentUpon>201603141637191_addedJobPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603141646455_Added Company.resx">
+      <DependentUpon>201603141646455_Added Company.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

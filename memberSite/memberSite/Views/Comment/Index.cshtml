@@ -1,5 +1,5 @@
-﻿@model IEnumerable<memberSite.Models.Comment>
-
+﻿@model PagedList.IPagedList<memberSite.Models.Comment>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
 }
@@ -10,24 +10,29 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<form method="get">
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Search By Name" />
+
+</form>
 <table class="table">
     <tr>
         <th>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.userDetail.FirstName)
+            @Html.DisplayNameFor(model => model.First().userDetail.FirstName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.userDetail.LastName)
+            @Html.DisplayNameFor(model => model.First().userDetail.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Date)
+            @Html.DisplayNameFor(model => model.First().Date)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Subject)
+            @Html.DisplayNameFor(model => model.First().Subject)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CommentText)
+            @Html.DisplayNameFor(model => model.First().CommentText)
         </th>
         <th></th>
     </tr>
@@ -68,3 +73,13 @@
         </tr>
     }
 </table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new
+    {
+        page,
+        sortOrder = ViewBag.CurrentSort,
+        currentFilter = ViewBag.CurrentFilter
+    }))
