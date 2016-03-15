@@ -87,7 +87,7 @@ namespace memberSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID, FirstName,LastName,PhoneNumber,Email,WebsiteURL,GitHubURL,LinkedinURL,pathToImg,pathToFile,About,FrontEnd,PHP,DotNet,RubyOnRails,iOS,Android")] UserDetails userDetailsModel)
+        public ActionResult Create([Bind(Include = "ID, FirstName,LastName,PhoneNumber,Email,WebsiteURL,GitHubURL,LinkedinURL,pathToImg,pathToFile,About,FrontEnd,PHP,DotNet,RubyOnRails,iOS,Android,MeanJS,Mentor")] UserDetails userDetailsModel)
         {
 
             if ((ModelState.IsValid) && (!db.UsersDetails.Any(s => s.Email == userDetailsModel.Email)))
@@ -120,7 +120,7 @@ namespace memberSite.Controllers
                 return RedirectToAction("Create");
             }
 
-            return View(userDetailsModel);
+            //return View(userDetailsModel);
         }
 
         // GET: UserDetailsModels/Edit/5
@@ -150,7 +150,7 @@ namespace memberSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,PhoneNumber,Email,WebsiteURL,GitHubURL,LinkedinURL,pathToImg,pathToFile,About,FrontEnd,PHP,DotNet,RubyOnRails,iOS,Android")] UserDetails userDetailsModel)
+        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName,PhoneNumber,Email,WebsiteURL,GitHubURL,LinkedinURL,pathToImg,pathToFile,About,FrontEnd,PHP,DotNet,RubyOnRails,iOS,Android,MeanJS,Mentor")] UserDetails userDetailsModel)
         {
             string unhashedEmail = userDetailsModel.Email.Trim().ToLower();
 

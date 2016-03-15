@@ -1,9 +1,17 @@
 ﻿@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700|Didact+Gothic);
 
-); body {
+body {
     padding-top: 50px;
     padding-bottom: 20px;
     font-family: 'Didact Gothic', sans-serif;
+}
+h1, h2{
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/*adjust bootstrap styles*/
+.btn{
+    margin: 5px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -34,12 +42,9 @@ textarea {
     display: block;
 }
 
-@media(Max-width: @screen-xs) {
-    .itemWrapper > img {
-        width: 60%;
-        margin-right: auto;
-        margin-left: auto;
-        clear: both;
+@media(Max-width: 767px) {
+    .profileImage {
+        margin-left:auto;
         display: block;
         padding-top: 5px;
         padding-bottom: 5px;
@@ -52,8 +57,24 @@ textarea {
     .eddLinks {
         font-weight: bold;
     }
-}
 
+    .badges img {
+       padding: 3px;  
+    }
+}/*end media query*/
+
+ @media(Min-width: 767px) {
+    .badges img {
+       margin: 5px;  
+    }
+}/*end media query*/
+
+.profileImage {
+    width: 100%;
+}
+ .searchForm input[name="searchTerm"]{
+     height:34px;
+ }
 .itemWrapper div ul {
     list-style-type: none;
     padding-left: 0;
@@ -73,7 +94,8 @@ textarea {
 }
 
 .badges img {
-    padding: 3px 3px;
+    width:60px;
+    height:60px;
 }
 
 
@@ -83,5 +105,40 @@ textarea {
     max-width: 125px;
     display: block;
     font-family: 'Ubuntu', sans-serif;
+    
+}
+
+.eddLinks a{
+    margin:8px 3px;
+}
+
+
+/*style the create and edit forms*/
+textArea{
+     overflow-y: scroll;
+    height: 300px;
+    width: 100%;
+    max-width:560px;
+}
+
+/*style the employer view*/
+.resetLink{
+    text-decoration: none;
+    color: black;
+}
+
+.resetLink:hover{
+    color: #0094ff;
+    text-decoration: none;
+}
+
+.badges a:hover{
+    text-decoration:none;
+}
+
+.employerTop,
+.indexList{
+    clear:both;
+    display: block;
 }
 

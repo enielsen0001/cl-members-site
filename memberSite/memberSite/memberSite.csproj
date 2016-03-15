@@ -197,6 +197,10 @@
     <Compile Include="Migrations\201603141646455_Added Company.Designer.cs">
       <DependentUpon>201603141646455_Added Company.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603151353043_updateUserProfileBadges.cs" />
+    <Compile Include="Migrations\201603151353043_updateUserProfileBadges.Designer.cs">
+      <DependentUpon>201603151353043_updateUserProfileBadges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -216,6 +220,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\Badges\Badge_android.png" />
+    <Content Include="images\Badges\Badge_fe.png" />
+    <Content Include="images\Badges\Badge_ios.png" />
+    <Content Include="images\Badges\Badge_js.png" />
+    <Content Include="images\Badges\Badge_mentor.png" />
+    <Content Include="images\Badges\Badge_net.png" />
+    <Content Include="images\Badges\Badge_php.png" />
+    <Content Include="images\Badges\Badge_ruby.png" />
+    <Content Include="images\CLAlogo.jpg" />
     <Content Include="images\Hydrangeas.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -304,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603141646455_Added Company.resx">
       <DependentUpon>201603141646455_Added Company.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603151353043_updateUserProfileBadges.resx">
+      <DependentUpon>201603151353043_updateUserProfileBadges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

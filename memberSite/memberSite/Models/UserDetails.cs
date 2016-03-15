@@ -117,9 +117,17 @@ namespace memberSite.Models
         {
             get; set;
         }
+        public bool MeanJS
+        {
+            get; set;
+        }
+        public bool Mentor
+        {
+            get; set;
+        }
 
 
-       //create create faux "About" field for index page display
+        //create create faux "About" field for index page display
         private int AboutLimit = 200;
 
         [Display(Name = "About")]

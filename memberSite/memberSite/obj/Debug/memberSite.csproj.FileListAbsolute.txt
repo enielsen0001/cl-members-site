@@ -75,3 +75,4 @@ C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberS
 C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite\bin\PagedList.Mvc.xml
 C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite\obj\Debug\memberSite.Migrations.addedJobPost.resources
 C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite\obj\Debug\memberSite.Migrations.AddedCompany.resources
+C:\Users\erika.nielsen\Documents\My Web Sites\cl-members-site\memberSite\memberSite\obj\Debug\memberSite.Migrations.updateUserProfileBadges.resources

@@ -4,156 +4,134 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-<form method="get">
-    <input type="search" name="searchTerm" />
-    <input type="submit" value="Search By Name" />
+<a href="@Url.Action("Index", "Employer")" class="resetLink"><h2>Index</h2></a>
 
-</form>
-<div>
-    <a href="@Url.Action("Index", new { trackFilter = "FrontEnd" })"><img src="~/images/Hydrangeas.jpg" /></a> 
+<div class="col-sm-8 col-sm-offset-2 employerTop">
+    <p class="text-center">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu augue, tincidunt a est ullamcorper, mollis lacinia diam. Pellentesque hendrerit tortor ac porttitor molestie. Aliquam elementum ultrices ex, eget pellentesque sem iaculis id. Vestibulum orci tortor, malesuada sit amet diam sed, scelerisque ornare tellus. Nunc consectetur nibh vitae quam vestibulum aliquam. Nunc nec velit nisl. Cras quis purus neque. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus sed eleifend velit. Cras augue ligula, finibus in luctus vel, cursus ac nisi.
+    </p>
+    <h4 class="text-center">
+        Select a badge below to filter alumni
+    </h4>
+
+    <div class="badges text-center">
+        <a href="@Url.Action("FilterFE", "Employer")" title="" class="">
+            <img src="@Url.Content("~/images/Badges/Badge_fe.png")" alt="Legacy Front End Badge" />
+        </a>
+        <a href="@Url.Action("FilterJS", "Employer")" title="" class="">
+            <img src="@Url.Content("~/images/Badges/Badge_js.png")" alt="Full Stack JS Badge" />
+        </a>
+        <a href="@Url.Action("FilterPHP", "Employer")" title="" class="">
+            <img src="@Url.Content("~/images/Badges/Badge_php.png")" alt="PHP Badge" />
+        </a>
+        <a href="@Url.Action("FilterRuby", "Employer")" title="" class="">
+            <img src="@Url.Content("~/images/Badges/Badge_ruby.png")" alt="Ruby Badge" />
+        </a>
+        <a href="@Url.Action("FilterDotNet", "Employer")" title="" class="">
+            <img src="@Url.Content("~/images/Badges/Badge_net.png")" alt="Dot Net Badge" />
+        </a>
+        <a href="@Url.Action("FilterIOS", "Employer")" title="" class="">
+            <img src="@Url.Content("~/images/Badges/Badge_ios.png")" alt="iOS Badge" />
+        </a>
+        <a href="@Url.Action("FilterAndroid", "Employer")" title="" class="">
+            <img src="@Url.Content("~/images/Badges/Badge_android.png")" alt="Android Badge" />
+        </a>
+        <a href="@Url.Action("FilterMentor", "Employer")" title="" class="">
+            <img src="@Url.Content("~/images/Badges/Badge_mentor.png")" alt="Mentor Badge" />
+        </a>
+        <a href="@Url.Action("Index", "Employer")" class="btn btn-default text-center">Reset Filter</a>
+    </div>
     
-    
+    <form method="get" class="text-center">
+        <input type="search" name="searchTerm" />
+        <input class="btn btn-info" type="submit" value="Search" />
+    </form>
+   
 </div>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.First().RegisteredUserID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().WebsiteURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().GitHubURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().LinkedinURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmailHash)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().About)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().FrontEnd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().PHP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().DotNet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().RubyOnRails)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().iOS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Android)
-        </th>
-        <th></th>
-    </tr>
+<section class="indexList">
+    @foreach (var item in Model)
+    {
+        <div class="itemWrapper row">
+            <hr />
+            <div class="col-sm-3">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegisteredUserID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WebsiteURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GitHubURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LinkedinURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailHash)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AboutTrimmed)
-            
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FrontEnd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PHP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DotNet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RubyOnRails)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.iOS)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Android)
-        </td>
-        <td>
-            @if (item.FrontEnd == true)
-            {
-                <img src="~/images/Hydrangeas.jpg" />
-            }
-            @if (item.PHP == true)
-            {
-                <img src="~/images/Hydrangeas.jpg" />
-            }
-            @if (item.DotNet == true)
-            {
-                <img src="~/images/Hydrangeas.jpg" />
-            }
-            @if (item.RubyOnRails == true)
-            {
-                <img src="~/images/Hydrangeas.jpg" />
-            }
-            @if (item.iOS == true)
-            {
-                <img src="~/images/Hydrangeas.jpg" />
-            }
-            @if (item.Android == true)
-            {
-                <img src="~/images/Hydrangeas.jpg" />
-            }
-        </td>
-        <td>
-            
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) 
-            
-        </td>
-    </tr>
-}
+                <img class="profileImage" src="http://www.gravatar.com/avatar/@Html.DisplayFor(modelItem =>item.EmailHash)?d=mm&s=180" />
 
-</table>
+                <div role="navigation" class="eddLinks hidden-xs">
+                    @Html.ActionLink("See Full Profile", "Details", new
+               {
+                   id = item.ID
+               }, new
+               {
+                   @class = "btn btn-info"
+               })
+                </div>
+            </div>
+
+            <div class="col-sm-9">
+                <ul>
+                    <li>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</li>
+                    <li>@Html.DisplayFor(modelItem => item.Email)</li>
+                    <li>&nbsp;</li>
+                    <li>@Html.DisplayFor(modelItem => item.AboutTrimmed)</li>
+                </ul>
+                <div class="badges">
+
+                    @if (item.FrontEnd == true)
+                    {
+
+                        <img src="@Url.Content("~/images/Badges/Badge_fe.png")" alt="Legacy Front end Badge" />
+                    }
+                    @if (item.MeanJS == true)
+                    {
+
+                        <img src="@Url.Content("~/images/Badges/Badge_js.png")" alt="Full Stack Javascript Badge" />
+                    }
+                    @if (item.PHP == true)
+                    {
+                        <img src="@Url.Content("~/images/Badges/Badge_php.png")" alt="PHP Badge" />
+                    }
+                    @if (item.DotNet == true)
+                    {
+
+                        <img src="@Url.Content("~/images/Badges/Badge_net.png")" alt="Dot Net Badge" />
+                    }
+                    @if (item.RubyOnRails == true)
+                    {
+
+                        <img src="@Url.Content("~/images/Badges/Badge_ruby.png")" alt="Ruby Badge" />
+                    }
+                    @if (item.iOS == true)
+                    {
+
+                        <img src="@Url.Content("~/images/Badges/Badge_ios.png")" alt="iOS Badge" />
+                    }
+                    @if (item.Android == true)
+                    {
+
+                        <img src="@Url.Content("~/images/Badges/Badge_android.png")" alt="Android Badge" />
+                    }
+                    @if (item.Mentor == true)
+                    {
+
+                        <img src="@Url.Content("~/images/Badges/Badge_mentor.png")" alt="Mentor Badge" />
+                    }
+                </div>
+                <div role="navigation" class="eddLinks  visible-xs">
+                    @Html.ActionLink("See Full Profile", "Details", new
+               {
+                   id = item.ID
+               }, new
+               {
+                   @class = "btn btn-info"
+               })
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+
 
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 

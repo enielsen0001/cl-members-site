@@ -6,15 +6,11 @@
 <h2>Details</h2>
 
 <div>
-    <h4>UserDetailsModel</h4>
+    <h4>Member Profile</h4>
     <hr />
+    <img src="http://www.gravatar.com/avatar/@Html.DisplayFor(model =>model.EmailHash)?d=mm&s=180" />
+
     <dl class="dl-horizontal">
-        <dt>
-            <img src="http://www.gravatar.com/avatar/@Html.DisplayFor(model =>model.EmailHash)?d=mm" />
-        </dt>
-        <dt>
-            @Html.DisplayNameFor(model => model.RegisteredUserID)
-        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.RegisteredUserID)
@@ -82,58 +78,55 @@
         <dd>
             @Html.DisplayFor(model => model.About)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FrontEnd)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FrontEnd)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PHP)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PHP)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DotNet)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DotNet)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RubyOnRails)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RubyOnRails)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.iOS)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.iOS)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Android)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Android)
-        </dd>
-
     </dl>
+    <div class="badges">
+
+        @if (Model.FrontEnd == true)
+            {
+
+            <img src="@Url.Content("~/images/Badges/Badge_fe.png")" alt="Legacy Front end Badge" />
+        }
+        @if (Model.MeanJS == true)
+            {
+
+            <img src="@Url.Content("~/images/Badges/Badge_js.png")" alt="Full Stack Javascript Badge" />
+        }
+        @if (Model.PHP == true)
+            {
+            <img src="@Url.Content("~/images/Badges/Badge_php.png")" alt="PHP Badge" />
+        }
+        @if (Model.DotNet == true)
+            {
+
+            <img src="@Url.Content("~/images/Badges/Badge_net.png")" alt="Dot Net Badge" />
+        }
+        @if (Model.RubyOnRails == true)
+            {
+
+            <img src="@Url.Content("~/images/Badges/Badge_ruby.png")" alt="Ruby Badge" />
+        }
+        @if (Model.iOS == true)
+            {
+
+            <img src="@Url.Content("~/images/Badges/Badge_ios.png")" alt="iOS Badge" />
+        }
+        @if (Model.Android == true)
+            {
+
+            <img src="@Url.Content("~/images/Badges/Badge_android.png")" alt="Android Badge" />
+        }
+        @if (Model.Mentor == true)
+            {
+
+            <img src="@Url.Content("~/images/Badges/Badge_mentor.png")" alt="Mentor Badge" />
+        }
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="eddLinks">
+
+    @Html.ActionLink("Back to List", "Index", null, new{@class = "btn btn-info"}) 
+    @Html.ActionLink("Edit", "Edit", new
+{
+    id = Model.ID
+})
+</div>

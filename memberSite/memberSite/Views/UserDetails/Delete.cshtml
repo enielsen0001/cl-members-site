@@ -5,10 +5,11 @@
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete this profile?</h3>
 <div>
-    <h4>UserDetailsModel</h4>
+    <h4>Member Profile</h4>
     <hr />
+    <img src="http://www.gravatar.com/avatar/@Html.DisplayFor(model =>model.EmailHash)?d=mm&s=180" />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -67,77 +68,64 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EmailHash)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmailHash)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.About)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.About)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FrontEnd)
         </dt>
+        <div class="badges">
 
-        <dd>
-            @Html.DisplayFor(model => model.FrontEnd)
-        </dd>
+            @if (Model.FrontEnd == true)
+            {
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PHP)
-        </dt>
+                <img src="@Url.Content("~/images/Badges/Badge_fe.png")" alt="Legacy Front end Badge" />
+            }
+            @if (Model.MeanJS == true)
+            {
 
-        <dd>
-            @Html.DisplayFor(model => model.PHP)
-        </dd>
+                <img src="@Url.Content("~/images/Badges/Badge_js.png")" alt="Full Stack Javascript Badge" />
+            }
+            @if (Model.PHP == true)
+            {
+                <img src="@Url.Content("~/images/Badges/Badge_php.png")" alt="PHP Badge" />
+            }
+            @if (Model.DotNet == true)
+            {
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DotNet)
-        </dt>
+                <img src="@Url.Content("~/images/Badges/Badge_net.png")" alt="Dot Net Badge" />
+            }
+            @if (Model.RubyOnRails == true)
+            {
 
-        <dd>
-            @Html.DisplayFor(model => model.DotNet)
-        </dd>
+                <img src="@Url.Content("~/images/Badges/Badge_ruby.png")" alt="Ruby Badge" />
+            }
+            @if (Model.iOS == true)
+            {
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RubyOnRails)
-        </dt>
+                <img src="@Url.Content("~/images/Badges/Badge_ios.png")" alt="iOS Badge" />
+            }
+            @if (Model.Android == true)
+            {
 
-        <dd>
-            @Html.DisplayFor(model => model.RubyOnRails)
-        </dd>
+                <img src="@Url.Content("~/images/Badges/Badge_android.png")" alt="Android Badge" />
+            }
+            @if (Model.Mentor == true)
+            {
 
-        <dt>
-            @Html.DisplayNameFor(model => model.iOS)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.iOS)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Android)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Android)
-        </dd>
-
-    </dl>
+                <img src="@Url.Content("~/images/Badges/Badge_mentor.png")" alt="Mentor Badge" />
+            }
+        </div>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Delete" class="btn btn-default" /> 
+            @Html.ActionLink("Back to List", "Index", null, new
+       {
+       @class="btn btn-info"})
         </div>
     }
 </div>
