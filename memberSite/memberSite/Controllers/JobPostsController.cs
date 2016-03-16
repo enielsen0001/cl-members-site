@@ -85,7 +85,7 @@ namespace memberSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,PostBody")] JobPost jobPost)
+        public ActionResult Create([Bind(Include = "ID,Title,PostBody,Company")] JobPost jobPost)
         {
             if (ModelState.IsValid)
             {
@@ -121,7 +121,7 @@ namespace memberSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Date,Title,PostBody")] JobPost jobPost)
+        public ActionResult Edit([Bind(Include = "ID,Date,Title,PostBody,Company")] JobPost jobPost)
         {
             if (ModelState.IsValid)
             {

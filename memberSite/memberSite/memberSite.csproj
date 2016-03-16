@@ -228,6 +228,7 @@
     <Content Include="images\Badges\Badge_net.png" />
     <Content Include="images\Badges\Badge_php.png" />
     <Content Include="images\Badges\Badge_ruby.png" />
+    <Content Include="images\CLAheader_logo.png" />
     <Content Include="images\CLAlogo.jpg" />
     <Content Include="images\Hydrangeas.jpg" />
     <Content Include="Scripts\bootstrap.js" />

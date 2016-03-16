@@ -17,13 +17,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new
-           {
-               area = ""
-           }, new
-           {
-               @class = "navbar-brand"
-           })
+                <a href="@Url.Action("Index", "Home")" title="" class="headerIcon">
+                    <img src="@Url.Content("~/images/CLAheader_logo.png")" alt="Code Louisville Alumni Logo " />
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

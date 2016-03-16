@@ -5,7 +5,7 @@
 @{
     var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
     string cLayout = "";
-    if (controller == "Comment" || controller == "UserDetails")
+    if (User.Identity.IsAuthenticated == true)
     {
         cLayout = "~/Views/Shared/_AuthorizedLayout.cshtml";
     }

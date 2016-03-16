@@ -4,75 +4,48 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Community</h2>
 <h2>@ViewBag.Message</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<form method="get">
+<form method="get" class="searchForm">
     <input type="search" name="searchTerm" />
-    <input type="submit" value="Search By Name" />
-
+    <input type="submit" value="Search" class="btn btn-info" />
 </form>
-<table class="table">
-    <tr>
-        <th>
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().userDetail.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().userDetail.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Date)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Subject)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().CommentText)
-        </th>
-        <th></th>
-    </tr>
+<hr /><p>
+    @Html.ActionLink("Create New", "Create", null, new
+{
+    @class = "btn btn-default"
+})
+</p>
+<section class="row">
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td><img src="http://www.gravatar.com/avatar/@Html.DisplayFor(modelItem =>item.userDetail.EmailHash)?d=mm" /></td>
-            <td>
-                @Html.DisplayFor(modelItem => item.userDetail.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.userDetail.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Subject)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CommentText)
-            </td>
-            <td>
+
+        <article class="col-sm-4 col-md-3 commentCard">
+
+            <img src="http://www.gravatar.com/avatar/@Html.DisplayFor(modelItem =>item.userDetail.EmailHash)?d=mm" />
+
+            <h4>
+                @Html.DisplayFor(modelItem => item.userDetail.FirstName)  @Html.DisplayFor(modelItem => item.userDetail.LastName)
+            </h4>
+            <h5>@Html.DisplayFor(modelItem => item.Subject)</h5>
+            <p>@Html.DisplayFor(modelItem => item.Date)</p>
+            <p>@Html.DisplayFor(modelItem => item.CommentText)</p>
+
+            <div role="navigation" class="eddLinks">
                 @Html.ActionLink("Edit", "Edit", new
-       {
-           id = item.ID
-       }) |
-                @Html.ActionLink("Details", "Details", new
-       {
-           id = item.ID
-       }) |
+               {
+                   id = item.ID
+               })
                 @Html.ActionLink("Delete", "Delete", new
-       {
-           id = item.ID
-       })
-            </td>
-        </tr>
+               {
+                   id = item.ID
+               })
+            </div>
+        </article>
     }
-</table>
+</section>
 
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 

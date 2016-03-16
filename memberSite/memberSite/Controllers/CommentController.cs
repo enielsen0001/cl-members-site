@@ -47,12 +47,12 @@ namespace memberSite.Controllers
                     searchResults.Add(db.Comments.FirstOrDefault(s => s.Subject.Contains(searchString) || s.CommentText.Contains(searchString) || s.userDetail.FirstName.Contains(searchString) || s.userDetail.LastName.Contains(searchString)));
                 }
 
-                searchResults.OrderBy(s => s.Date);
+                searchResults.OrderByDescending(s => s.Date);
             }
             else
             {
                 //return alphabetized list if no search term
-                searchResults = db.Comments.OrderBy(s => s.Date).ToList();
+                searchResults = db.Comments.OrderByDescending(s => s.Date).ToList();
             }
 
             int pageSize = 10;

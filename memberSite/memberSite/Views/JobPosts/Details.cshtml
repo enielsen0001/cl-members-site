@@ -7,42 +7,32 @@
 <h2>Details</h2>
 
 <div>
-    <h4>JobPost</h4>
+    <h4>Job Post</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
-        <dd>
+    
+    <h4>
+        @Html.DisplayFor(model => model.Title)
+    </h4><h5>
+    @Html.DisplayFor(model => model.Company)
+</h5>
+        <p>
             @Html.DisplayFor(model => model.Date)
-        </dd>
+        </p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Company)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Company)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PostBody)
-        </dt>
-
-        <dd>
+        <p class="postBody">
             @Html.DisplayFor(model => model.PostBody)
-        </dd>
+        </p>
 
-    </dl>
+  
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+<p role="navigation" class="eddLinks">
+   
+    @Html.ActionLink("Back to List", "Index", null, new
+{ @class="btn btn-default"
+}) 
+    @Html.ActionLink("Edit", "Edit", new
+                                         {
+                                             id = Model.ID
+                                         })
+    
 </p>
