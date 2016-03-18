@@ -47,24 +47,28 @@ namespace memberSite.Models
         }
 
         [StringLength(100)]
+        [EmailAddress]
         public string Email
         {
             get; set;
         }
 
         [StringLength(300)]
+        [Url]
         public string WebsiteURL
         {
             get; set;
         }
 
         [StringLength(300)]
+        [Url]
         public string GitHubURL
         {
             get; set;
         }
 
         [StringLength(300)]
+        [Url]
         public string LinkedinURL
         {
             get; set;

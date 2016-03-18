@@ -201,6 +201,10 @@
     <Compile Include="Migrations\201603151353043_updateUserProfileBadges.Designer.cs">
       <DependentUpon>201603151353043_updateUserProfileBadges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603162236038_add user roles.cs" />
+    <Compile Include="Migrations\201603162236038_add user roles.Designer.cs">
+      <DependentUpon>201603162236038_add user roles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -321,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603151353043_updateUserProfileBadges.resx">
       <DependentUpon>201603151353043_updateUserProfileBadges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603162236038_add user roles.resx">
+      <DependentUpon>201603162236038_add user roles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

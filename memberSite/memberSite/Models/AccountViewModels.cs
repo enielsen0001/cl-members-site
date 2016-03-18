@@ -79,6 +79,24 @@ namespace memberSite.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        /*added user role*/
+        [Display(Name = "Employer")]
+        public bool Employer
+        {
+            get; set;
+        }
+        [Display(Name = "Member")]
+        public bool Member
+        {
+            get; set;
+        }
+        [Display(Name = "Guest")]
+        public bool Guest
+        {
+            get; set;
+        }
+
     }
 
     public class ResetPasswordViewModel
