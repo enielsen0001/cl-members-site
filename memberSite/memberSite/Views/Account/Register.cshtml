@@ -1,6 +1,7 @@
 ﻿@model memberSite.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    
 }
 
 <h2>@ViewBag.Title.</h2>
@@ -27,6 +28,20 @@
         @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Are you an Alumni or an Employer?", new
+   {
+       @class = "col-md-2 control-label"
+   })
+        <div class="col-md-10">
+            @Html.DropDownList("SelectedMemberRole", (IEnumerable<SelectListItem>)ViewBag.MemberRoles , "-Select-", new
+       {
+
+           @class = "form-control"
+
+       })
         </div>
     </div>
     <div class="form-group">

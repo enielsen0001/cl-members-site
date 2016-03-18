@@ -79,6 +79,24 @@ namespace memberSite.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Member Role is required")]
+        [Display(Name = "Are you an employer or alumni? ")]
+        public string SelectedMemberRole
+        {
+            get; set;
+        }
+
+        //    public IEnumerable<System.Web.Mvc.SelectListItem> RoleItems
+        //    {
+        //        get
+        //        {
+        //         List<System.Web.Mvc.SelectListItem> roles = new List<System.Web.Mvc.SelectListItem>();
+        //roles.Add(new System.Web.Mvc.SelectListItem { Text="Alumni", Value="Alumni" });
+        //roles.Add(new System.Web.Mvc.SelectListItem { Text = "Employer", Value = "Employer" });
+        //            return roles;
+        //    }
+        //   }
     }
 
     public class ResetPasswordViewModel
