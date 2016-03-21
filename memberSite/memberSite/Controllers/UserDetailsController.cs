@@ -13,7 +13,7 @@ using PagedList;
 
 namespace memberSite.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin, Alumni")]
     public class UserDetailsController : Controller
     {
         private MemberSiteDB db = new MemberSiteDB();

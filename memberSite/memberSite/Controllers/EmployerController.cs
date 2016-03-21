@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace memberSite.Controllers
 {
+    [Authorize(Roles = "Admin, Employer")]
     public class EmployerController : Controller
     {
         private MemberSiteDB db = new MemberSiteDB();

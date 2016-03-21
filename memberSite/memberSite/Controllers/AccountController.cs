@@ -179,9 +179,9 @@ namespace memberSite.Controllers
 
 
                     UserManager.AddToRole(user.Id, model.SelectedMemberRole);
-                    
 
                     return RedirectToAction("Create", "UserDetails");
+
                 }
 
 
