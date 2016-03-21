@@ -7,11 +7,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using memberSite.Models;
-using System.Collections.Generic;
 
 namespace memberSite.Controllers
 {
@@ -151,14 +146,6 @@ namespace memberSite.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            var roles = new List<SelectListItem>();
-            roles.Add(new SelectListItem() { Text = "Alumni", Value = "Alumni" });
-            roles.Add(new SelectListItem() { Text = "Employer", Value = "Employer" });
-            
-  
-
-            ViewBag.MemberRoles = roles;
-
             return View();
         }
 
@@ -169,17 +156,30 @@ namespace memberSite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            
-            if (ModelState.IsValid)
-            {var account = new AccountController();
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+           
 
+              
+            if (ModelState.IsValid)
+            {
+                /*-------------------------------------------------------------------------------------------------------*/
+ /*add user role to controller*/
+            
+
+          
+                if (model.Employer == true)
+                {
+                System.Web.Security.Roles.AddUserToRole(model.Email, "Employer");
+            }
+                if (model.Member == true)
+                {
+                System.Web.Security.Roles.AddUserToRole(model.Email , "Member");
+            }
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -189,27 +189,12 @@ namespace memberSite.Controllers
 
                     //return RedirectToAction("Index", "Home");
                     //redirect to fill out profile
-
-
-                    UserManager.AddToRole(user.Id, model.SelectedMemberRole);
-
                     return RedirectToAction("Create", "UserDetails");
-
                 }
-
-
-
                 AddErrors(result);
             }
-           
-            // If we got this far, something failed, redisplay form
-             var roles = new List<SelectListItem>();
-            roles.Add(new SelectListItem() { Text = "Alumni", Value = "Alumni" });
-            roles.Add(new SelectListItem() { Text = "Employer", Value = "Employer" });
-            
-  
 
-            ViewBag.MemberRoles = roles;
+            // If we got this far, something failed, redisplay form
             return View(model);
         }
 

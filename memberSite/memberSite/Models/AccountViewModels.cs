@@ -80,23 +80,12 @@ namespace memberSite.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        /*added user role*/
-        [Display(Name = "Employer")]
-        public bool Employer
+        [Required(ErrorMessage = "Member Role is required")]
+        [Display(Name = "Are you an employer or alumni? ")]
+        public string SelectedMemberRole
         {
             get; set;
         }
-        [Display(Name = "Member")]
-        public bool Member
-        {
-            get; set;
-        }
-        [Display(Name = "Guest")]
-        public bool Guest
-        {
-            get; set;
-        }
-
     }
 
     public class ResetPasswordViewModel

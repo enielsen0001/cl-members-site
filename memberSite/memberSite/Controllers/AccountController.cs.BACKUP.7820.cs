@@ -7,11 +7,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+<<<<<<< HEAD
+=======
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using memberSite.Models;
 using System.Collections.Generic;
+>>>>>>> ImplementUserRoles
 
 namespace memberSite.Controllers
 {
@@ -169,17 +172,41 @@ namespace memberSite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+<<<<<<< HEAD
+           
+
+              
+            if (ModelState.IsValid)
+            {
+                /*-------------------------------------------------------------------------------------------------------*/
+ /*add user role to controller*/
+            
+
+          
+                if (model.Employer == true)
+                {
+                System.Web.Security.Roles.AddUserToRole(model.Email, "Employer");
+            }
+                if (model.Member == true)
+                {
+                System.Web.Security.Roles.AddUserToRole(model.Email , "Member");
+            }
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, };
+=======
             
             if (ModelState.IsValid)
             {var account = new AccountController();
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-
+>>>>>>> ImplementUserRoles
                 var result = await UserManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
                 {
+<<<<<<< HEAD
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+=======
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
+>>>>>>> ImplementUserRoles
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
