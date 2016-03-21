@@ -139,10 +139,18 @@ namespace memberSite.Models
         {
             get
             {
-                if (this.About.Length > this.AboutLimit)
-                    return this.About.Substring(0, this.AboutLimit) + "...";
+                if (About != null)
+                {
+                    if (this.About.Length > this.AboutLimit)
+                        return this.About.Substring(0, this.AboutLimit) + "...";
+                    else
+                        return this.About;
+                }
                 else
-                    return this.About;
+                {
+                    return "no profile information";
+                }
+                
             }
         }
     }

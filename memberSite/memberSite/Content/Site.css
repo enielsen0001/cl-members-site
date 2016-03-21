@@ -198,3 +198,8 @@ textArea{
     .indexPage > p {
         width: 50%;
     }}
+
+/*styling the returned text*/
+.postBody{
+    white-space: pre-line;
+}

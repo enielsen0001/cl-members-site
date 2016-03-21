@@ -299,7 +299,10 @@
     <Content Include="Views\JobPosts\Details.cshtml" />
     <Content Include="Views\JobPosts\Edit.cshtml" />
     <Content Include="Views\JobPosts\Index.cshtml" />
-    <Content Include="Views\Shared\_AuthorizedLayout.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Shared\_AlumniLayout.cshtml" />
+    <Content Include="Views\Shared\_EmployerLayout.cshtml" />
+    <Content Include="Views\Employer\AlumniDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -326,13 +329,8 @@
     <EmbeddedResource Include="Migrations\201603151353043_updateUserProfileBadges.resx">
       <DependentUpon>201603151353043_updateUserProfileBadges.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
-    <EmbeddedResource Include="Migrations\201603162236038_add user roles.resx">
-      <DependentUpon>201603162236038_add user roles.cs</DependentUpon>
-=======
     <EmbeddedResource Include="Migrations\201603182028348_changed_Account_view_modea.resx">
       <DependentUpon>201603182028348_changed_Account_view_modea.cs</DependentUpon>
->>>>>>> ImplementUserRoles
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

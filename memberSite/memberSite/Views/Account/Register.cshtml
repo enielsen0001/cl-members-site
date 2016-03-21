@@ -31,34 +31,6 @@
         </div>
     </div>
     <h4>Are you an employer or alumni?</h4>
-    <div class="form-group row">
-        @Html.LabelFor(m => m.Employer, htmlAttributes: new
-       {
-           @class = "control-label col-xs-2"
-       })
-        <div class="col-xs-6 col-sm-2">
-            @Html.CheckBoxFor(m => m.Employer)
-            @Html.ValidationMessageFor(m => m.Employer, "", new
-           {
-               @class = "text-danger"
-           })
-        </div>
-    </div>
-
-    <div class="form-group row">
-        @Html.LabelFor(m => m.Member, htmlAttributes: new
-       {
-           @class = "control-label col-xs-2"
-       })
-        <div class="col-xs-6 col-sm-2">
-            @Html.CheckBoxFor(m => m.Member)
-            @Html.ValidationMessageFor(m => m.Member, "", new
-           {
-               @class = "text-danger"
-           })
-        </div>
-    </div>
-
     <div class="form-group">
         @Html.Label("Are you an Alumni or an Employer?", new
    {

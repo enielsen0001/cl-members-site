@@ -5,13 +5,23 @@
 @{
     var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
     string cLayout = "";
-    if (User.Identity.IsAuthenticated == true)
+    if (User.IsInRole("Admin"))
     {
-        cLayout = "~/Views/Shared/_AuthorizedLayout.cshtml";
+        cLayout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    if (User.IsInRole("Alumni"))
+    {
+        cLayout = "~/Views/Shared/_AlimnuLayout.cshtml";
+    }
+    if (User.IsInRole("Employer"))
+    {
+        cLayout = "~/Views/Shared/_EmployerLayout.cshtml";
     }
     else
     {
         cLayout = "~/Views/Shared/_Layout.cshtml";
     }
+
+
     Layout = cLayout;
 }

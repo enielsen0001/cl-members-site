@@ -79,7 +79,7 @@
             @Html.DisplayFor(model => model.About, new
        {
            @class = "postBody"
-            })
+       })
         </dd>
     </dl>
     <div class="badges">
@@ -127,9 +127,8 @@
 </div>
 <div class="eddLinks">
 
-    @Html.ActionLink("Back to List", "Index", null, new{@class = "btn btn-info"}) 
-    @Html.ActionLink("Edit", "Edit", new
+    @Html.ActionLink("Back to List", "Index", null, new
 {
-    id = Model.ID
+    @class = "btn btn-info"
 })
 </div>

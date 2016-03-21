@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<memberSite.Models.UserDetails>
 @using PagedList.Mvc;
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Index";
 }
@@ -22,7 +23,7 @@
             <hr />
             <div class="col-sm-3">
                 
-                    <img class="profileImage" src="http://www.gravatar.com/avatar/@Html.DisplayFor(modelItem =>item.EmailHash)?d=mm&s=180" />
+                    <img class="profileImage" src="http://www.gravatar.com/avatar/@Html.DisplayFor(modelItem => item.EmailHash)?d=mm&s=180" />
                 
                 <div role="navigation" class="eddLinks hidden-xs">
                     @Html.ActionLink("See Full Profile", "Details", new
@@ -33,15 +34,23 @@
                    @class = "btn btn-info"
                })
 
-                    @Html.ActionLink("Edit", "Edit", new
-               {
-                   id = item.ID
-               })
+                    @*dont forget to add Admin id to this*@
+              @if (item.RegisteredUserID == System.Web.HttpContext.Current.User.Identity.GetUserId())
+              {
 
-                    @Html.ActionLink("Delete", "Delete", new
-               {
-                   id = item.ID
-               })
+                @Html.ActionLink("Edit", "Edit", new
+           {
+               id = item.ID
+           })
+
+
+                @Html.ActionLink("Delete", "Delete", new
+           {
+               id = item.ID
+           })
+
+              }
+            
                 </div>
             </div>
 
@@ -96,22 +105,27 @@
                 </div>
                 <div role="navigation" class="eddLinks  visible-xs">
                     @Html.ActionLink("See Full Profile", "Details", new
-                                                               {
-                                                                   id = item.ID
-                                                               }, new
-                                                               {
-                                                                   @class = "btn btn-info"
-                                                               })
+               {
+                   id = item.ID
+               }, new
+               {
+                   @class = "btn btn-info"
+               })
+@if (item.RegisteredUserID == System.Web.HttpContext.Current.User.Identity.GetUserId())
+{
 
                 @Html.ActionLink("Edit", "Edit", new
-               {
-                   id = item.ID
-               })
+           {
+               id = item.ID
+           })
+
 
                 @Html.ActionLink("Delete", "Delete", new
-               {
-                   id = item.ID
-               })
+           {
+               id = item.ID
+           })
+
+}    
             </div>
         </div>
     </div>

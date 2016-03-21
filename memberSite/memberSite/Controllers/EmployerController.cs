@@ -66,7 +66,7 @@ namespace memberSite.Controllers
             {
                 return HttpNotFound();
             }
-            return View(userDetailsModel);
+            return View("AlumniDetails", userDetailsModel);
         }
 //begin ridiculous filters--------------------------------------------------------------------
         public ActionResult FilterFE(string currentFilter, int? page, string searchTerm = null)
