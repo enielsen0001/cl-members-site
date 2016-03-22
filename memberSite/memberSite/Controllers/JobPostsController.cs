@@ -1,13 +1,13 @@
-﻿using System;
+﻿using memberSite.Models;
+using Microsoft.AspNet.Identity;
+using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using memberSite.Models;
-using PagedList;
 
 namespace memberSite.Controllers
 {
@@ -19,7 +19,6 @@ namespace memberSite.Controllers
         [Authorize]
         public ActionResult Index(string currentFilter, int? page, string searchTerm = null)
         {
-
             ViewBag.Message = TempData["ErrorMessage"];
 
             //pagination
@@ -83,7 +82,7 @@ namespace memberSite.Controllers
         }
 
         // POST: JobPosts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         [Authorize(Roles = "Admin, Employer")]
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -93,6 +92,7 @@ namespace memberSite.Controllers
             if (ModelState.IsValid)
             {
                 jobPost.Date = DateTime.Now.ToString("MM/dd/yyyy");
+                jobPost.RegisteredUserID = User.Identity.GetUserId();
                 db.JobPosts.Add(jobPost);
                 db.SaveChanges();
                 return RedirectToAction("Details", new
@@ -117,17 +117,27 @@ namespace memberSite.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (jobPost.RegisteredUserID != User.Identity.GetUserId() && !User.IsInRole("Admin"))
+            {
+                var editErrorMessage = "Why are you trying to mess with other people's stuff?!";
+                TempData["ErrorMessage"] = editErrorMessage;
+                return RedirectToAction("Index");
+            }
+
             return View(jobPost);
         }
 
         // POST: JobPosts/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize(Roles = "Admin, Employer")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Date,Title,PostBody,Company")] JobPost jobPost)
+        public ActionResult Edit([Bind(Include = "ID,Title,PostBody,Company")] JobPost jobPost)
         {
+            jobPost.Date = DateTime.Now.ToString("MM/dd/yyyy");
+            jobPost.RegisteredUserID = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 db.Entry(jobPost).State = EntityState.Modified;
@@ -150,6 +160,14 @@ namespace memberSite.Controllers
             {
                 return HttpNotFound();
             }
+
+            if (jobPost.RegisteredUserID != User.Identity.GetUserId() && !User.IsInRole("Admin"))
+            {
+                var editErrorMessage = "Why are you trying to mess with other people's stuff?!";
+                TempData["ErrorMessage"] = editErrorMessage;
+                return RedirectToAction("Index");
+            }
+
             return View(jobPost);
         }
 

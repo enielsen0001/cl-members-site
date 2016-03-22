@@ -34,8 +34,8 @@
                    @class = "btn btn-info"
                })
 
-                    @*dont forget to add Admin id to this*@
-              @if (item.RegisteredUserID == System.Web.HttpContext.Current.User.Identity.GetUserId())
+                  
+              @if (item.RegisteredUserID == System.Web.HttpContext.Current.User.Identity.GetUserId()||User.IsInRole("Admin"))
               {
 
                 @Html.ActionLink("Edit", "Edit", new
@@ -111,7 +111,7 @@
                {
                    @class = "btn btn-info"
                })
-@if (item.RegisteredUserID == System.Web.HttpContext.Current.User.Identity.GetUserId())
+@if (item.RegisteredUserID == System.Web.HttpContext.Current.User.Identity.GetUserId() || User.IsInRole("Admin"))
 {
 
                 @Html.ActionLink("Edit", "Edit", new

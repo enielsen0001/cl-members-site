@@ -1,16 +1,11 @@
 ﻿using memberSite.Models;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using memberSite.Models;
 using System.Collections.Generic;
 
 namespace memberSite.Controllers
@@ -69,7 +64,7 @@ namespace memberSite.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl = "~/Home")
         {
             if (!ModelState.IsValid)
             {
@@ -157,7 +152,7 @@ namespace memberSite.Controllers
             
   
 
-            ViewBag.MemberRoles = roles;
+            
 
             return View();
         }
@@ -192,8 +187,18 @@ namespace memberSite.Controllers
 
 
                     UserManager.AddToRole(user.Id, model.SelectedMemberRole);
-
-                    return RedirectToAction("Create", "UserDetails");
+                    if (UserManager.GetRoles(user.Id).FirstOrDefault() == "Employer")
+                    {
+                        return RedirectToAction("Index", "Employer");
+                    }
+                    if (UserManager.GetRoles(user.Id).FirstOrDefault() == "Alumni")
+                    {
+                        return RedirectToAction("Create", "UserDetails");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
 
                 }
 
@@ -207,9 +212,6 @@ namespace memberSite.Controllers
             roles.Add(new SelectListItem() { Text = "Alumni", Value = "Alumni" });
             roles.Add(new SelectListItem() { Text = "Employer", Value = "Employer" });
             
-  
-
-            ViewBag.MemberRoles = roles;
             return View(model);
         }
 

@@ -205,6 +205,10 @@
     <Compile Include="Migrations\201603182028348_changed_Account_view_modea.Designer.cs">
       <DependentUpon>201603182028348_changed_Account_view_modea.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603221417496_added user id to job posts.cs" />
+    <Compile Include="Migrations\201603221417496_added user id to job posts.Designer.cs">
+      <DependentUpon>201603221417496_added user id to job posts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -331,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603182028348_changed_Account_view_modea.resx">
       <DependentUpon>201603182028348_changed_Account_view_modea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603221417496_added user id to job posts.resx">
+      <DependentUpon>201603221417496_added user id to job posts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

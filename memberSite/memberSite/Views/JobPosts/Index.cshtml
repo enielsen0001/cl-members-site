@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<memberSite.Models.JobPost>
 @using PagedList.Mvc;
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = "Index";
@@ -38,6 +39,9 @@
            {
                @class = "btn btn-info"
            })
+
+@if (item.RegisteredUserID == System.Web.HttpContext.Current.User.Identity.GetUserId() || User.IsInRole("Admin"))
+{
                 @Html.ActionLink("Delete", "Delete", new
            {
                id = item.ID
@@ -45,6 +49,7 @@
          {
              id = item.ID
          })
+}
     </div><hr />
 </article>
     }

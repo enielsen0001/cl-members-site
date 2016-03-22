@@ -27,5 +27,9 @@ namespace memberSite.Models
         {
             get; set;
         }
+        public string RegisteredUserID
+        {
+            get; set;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using memberSite.Models;
 using Microsoft.AspNet.Identity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,6 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Mvc;
-using PagedList;
 
 namespace memberSite.Controllers
 {
@@ -21,7 +21,6 @@ namespace memberSite.Controllers
         // GET: UserDetailsModels
         public ActionResult Index(string currentFilter, int? page, string searchTerm = null)
         {
-             
             ViewBag.Message = TempData["ErrorMessage"];
 
             //pagination
@@ -89,14 +88,12 @@ namespace memberSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID, FirstName,LastName,PhoneNumber,Email,WebsiteURL,GitHubURL,LinkedinURL,pathToImg,pathToFile,About,FrontEnd,PHP,DotNet,RubyOnRails,iOS,Android,MeanJS,Mentor")] UserDetails userDetailsModel)
         {
-
             if ((ModelState.IsValid) && (!db.UsersDetails.Any(s => s.Email == userDetailsModel.Email)))
             {
-                string user_id = User.Identity.GetUserId();
                 string unhashedEmail = userDetailsModel.Email.Trim().ToLower();
 
                 userDetailsModel.EmailHash = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(unhashedEmail)).Select(s => s.ToString("x2")));
-                userDetailsModel.RegisteredUserID = user_id;
+                userDetailsModel.RegisteredUserID = User.Identity.GetUserId();
 
                 db.UsersDetails.Add(userDetailsModel);
                 db.SaveChanges();
@@ -109,7 +106,6 @@ namespace memberSite.Controllers
                 {
                     var existingUserErrorMessage = "A profile with that email already exists, please choose another or edit the original profile";
                     TempData["ErrorMessage"] = existingUserErrorMessage;
-
                 }
 
                 if (!ModelState.IsValid)
@@ -135,7 +131,7 @@ namespace memberSite.Controllers
             {
                 return HttpNotFound();
             }
-            if (userDetailsModel.RegisteredUserID != User.Identity.GetUserId())
+            if (userDetailsModel.RegisteredUserID != User.Identity.GetUserId() && !User.IsInRole("Admin"))
             {
                 var editErrorMessage = "Why are you trying to mess with other people's stuff?!";
                 TempData["ErrorMessage"] = editErrorMessage;
@@ -155,6 +151,7 @@ namespace memberSite.Controllers
             string unhashedEmail = userDetailsModel.Email.Trim().ToLower();
 
             userDetailsModel.EmailHash = string.Join("", MD5.Create().ComputeHash(Encoding.ASCII.GetBytes(unhashedEmail)).Select(s => s.ToString("x2")));
+            userDetailsModel.RegisteredUserID = User.Identity.GetUserId();
 
             if (ModelState.IsValid)
             {
@@ -177,7 +174,7 @@ namespace memberSite.Controllers
             {
                 return HttpNotFound();
             }
-            if (userDetailsModel.RegisteredUserID != User.Identity.GetUserId())
+            if (userDetailsModel.RegisteredUserID != User.Identity.GetUserId() && !User.IsInRole("Admin"))
             {
                 var deleteErrorMessage = "Why are you trying to mess with other people's stuff?!";
                 TempData["ErrorMessage"] = deleteErrorMessage;

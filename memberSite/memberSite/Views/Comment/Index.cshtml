@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<memberSite.Models.Comment>
 @using PagedList.Mvc;
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Index";
 }
@@ -34,14 +35,17 @@
             <p>@Html.DisplayFor(modelItem => item.CommentText)</p>
 
             <div role="navigation" class="eddLinks">
+@if (item.RegisteredUserID == System.Web.HttpContext.Current.User.Identity.GetUserId() || User.IsInRole("Admin"))
+{
                 @Html.ActionLink("Edit", "Edit", new
-               {
-                   id = item.ID
-               })
+           {
+               id = item.ID
+           })
                 @Html.ActionLink("Delete", "Delete", new
-               {
-                   id = item.ID
-               })
+           {
+               id = item.ID
+           })
+}
             </div>
         </article>
     }

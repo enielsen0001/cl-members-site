@@ -15,7 +15,6 @@ namespace memberSite.Controllers
 
         public ActionResult Index(string currentFilter, int? page, string searchTerm = null)
         {
-
             ViewBag.Message = TempData["ErrorMessage"];
 
             //pagination
@@ -68,10 +67,10 @@ namespace memberSite.Controllers
             }
             return View("AlumniDetails", userDetailsModel);
         }
-//begin ridiculous filters--------------------------------------------------------------------
+
+        //begin ridiculous filters--------------------------------------------------------------------
         public ActionResult FilterFE(string currentFilter, int? page, string searchTerm = null)
         {
-
             ViewBag.Message = TempData["ErrorMessage"];
 
             if (searchTerm != null)
@@ -107,10 +106,8 @@ namespace memberSite.Controllers
             return View("Index", searchResults.ToPagedList(pageNumber, pageSize));
         }
 
-
         public ActionResult FilterJS(string currentFilter, int? page, string searchTerm = null)
         {
-
             ViewBag.Message = TempData["ErrorMessage"];
 
             if (searchTerm != null)
@@ -148,7 +145,6 @@ namespace memberSite.Controllers
 
         public ActionResult FilterPHP(string currentFilter, int? page, string searchTerm = null)
         {
-
             ViewBag.Message = TempData["ErrorMessage"];
 
             if (searchTerm != null)
@@ -186,7 +182,6 @@ namespace memberSite.Controllers
 
         public ActionResult FilterRuby(string currentFilter, int? page, string searchTerm = null)
         {
-
             ViewBag.Message = TempData["ErrorMessage"];
 
             if (searchTerm != null)
@@ -224,7 +219,6 @@ namespace memberSite.Controllers
 
         public ActionResult FilterDotNet(string currentFilter, int? page, string searchTerm = null)
         {
-
             ViewBag.Message = TempData["ErrorMessage"];
 
             if (searchTerm != null)
@@ -262,7 +256,6 @@ namespace memberSite.Controllers
 
         public ActionResult FilterIOS(string currentFilter, int? page, string searchTerm = null)
         {
-
             ViewBag.Message = TempData["ErrorMessage"];
 
             if (searchTerm != null)
@@ -300,7 +293,6 @@ namespace memberSite.Controllers
 
         public ActionResult FilterAndroid(string currentFilter, int? page, string searchTerm = null)
         {
-
             ViewBag.Message = TempData["ErrorMessage"];
 
             if (searchTerm != null)
@@ -338,7 +330,6 @@ namespace memberSite.Controllers
 
         public ActionResult FilterMentor(string currentFilter, int? page, string searchTerm = null)
         {
-
             ViewBag.Message = TempData["ErrorMessage"];
 
             if (searchTerm != null)

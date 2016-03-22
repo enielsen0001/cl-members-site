@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace memberSite.Controllers
 {
-    [Authorize(Roles ="Admin, Alumni")]
+    [Authorize(Roles = "Admin, Alumni")]
     public class CommentController : Controller
     {
         private MemberSiteDB db = new MemberSiteDB();
@@ -19,7 +19,6 @@ namespace memberSite.Controllers
         // GET: CommentModels
         public ActionResult Index(string currentFilter, int? page, string searchTerm = null)
         {
-
             ViewBag.Message = TempData["ErrorMessage"];
 
             //pagination
@@ -96,10 +95,8 @@ namespace memberSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Date,Subject,Comment,CommentText")] Comment commentModel)
         {
-            var user_id = User.Identity.GetUserId();
-            //assign datetime
             commentModel.Date = DateTime.Now.ToString("MM/dd/yyyy");
-            //assign userid
+
             commentModel.RegisteredUserID = User.Identity.GetUserId();
 
             commentModel.userDetail = db.UsersDetails.Where(x => x.RegisteredUserID == commentModel.RegisteredUserID).SingleOrDefault();
@@ -126,7 +123,7 @@ namespace memberSite.Controllers
             {
                 return HttpNotFound();
             }
-            if (commentModel.RegisteredUserID != User.Identity.GetUserId())
+            if (commentModel.RegisteredUserID != User.Identity.GetUserId() && !User.IsInRole("Admin"))
             {
                 var editErrorMessage = "Why are you trying to mess with other people's stuff?!";
                 TempData["ErrorMessage"] = editErrorMessage;
@@ -142,6 +139,9 @@ namespace memberSite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Date,Subject,Comment,CommentText")] Comment commentModel)
         {
+            commentModel.Date = DateTime.Now.ToString("MM/dd/yyyy");
+
+            commentModel.RegisteredUserID = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 db.Entry(commentModel).State = EntityState.Modified;
@@ -163,7 +163,7 @@ namespace memberSite.Controllers
             {
                 return HttpNotFound();
             }
-            if (commentModel.RegisteredUserID != User.Identity.GetUserId())
+            if (commentModel.RegisteredUserID != User.Identity.GetUserId() && !User.IsInRole("Admin"))
             {
                 var editErrorMessage = "Why are you trying to mess with other people's stuff?!";
                 TempData["ErrorMessage"] = editErrorMessage;
