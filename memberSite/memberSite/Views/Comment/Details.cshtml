@@ -1,5 +1,5 @@
 ﻿@model memberSite.Models.Comment
-
+@using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Details";
 }
@@ -56,7 +56,21 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div role="navigation" class="eddLinks">
+    @Html.ActionLink("Back to List", "Index", null, new
+{
+    @class = "btn btn-default"
+})
+    
+    @if (Model.RegisteredUserID == System.Web.HttpContext.Current.User.Identity.GetUserId() || User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new
+           {
+               id = Model.ID
+           })
+        @Html.ActionLink("Delete", "Delete", new
+           {
+               id = Model.ID
+           })
+    }
+</div>
