@@ -85,7 +85,8 @@ namespace memberSite.Controllers
             ViewBag.CurrentFilter = searchTerm;
 
             var searchResults = new List<UserDetails>();
-            if (!String.IsNullOrEmpty(searchTerm))
+            if (!String.IsNullOrEmpty(searchTerm) && db.UsersDetails.Where(s => s.FrontEnd
+                  == true).Count() != 0)
             {
                 page = 1;
 
@@ -122,7 +123,8 @@ namespace memberSite.Controllers
             ViewBag.CurrentFilter = searchTerm;
 
             var searchResults = new List<UserDetails>();
-            if (!String.IsNullOrEmpty(searchTerm))
+            if (!String.IsNullOrEmpty(searchTerm) && db.UsersDetails.Where(s => s.MeanJS
+                  == true).Count() != 0)
             {
                 page = 1;
 
@@ -159,7 +161,8 @@ namespace memberSite.Controllers
             ViewBag.CurrentFilter = searchTerm;
 
             var searchResults = new List<UserDetails>();
-            if (!String.IsNullOrEmpty(searchTerm))
+            if (!String.IsNullOrEmpty(searchTerm) && db.UsersDetails.Where(s => s.PHP
+                  == true).Count() != 0)
             {
                 page = 1;
 
@@ -196,7 +199,8 @@ namespace memberSite.Controllers
             ViewBag.CurrentFilter = searchTerm;
 
             var searchResults = new List<UserDetails>();
-            if (!String.IsNullOrEmpty(searchTerm))
+            if (!String.IsNullOrEmpty(searchTerm) && db.UsersDetails.Where(s => s.RubyOnRails
+                  == true).Count() != 0)
             {
                 page = 1;
 
@@ -233,7 +237,8 @@ namespace memberSite.Controllers
             ViewBag.CurrentFilter = searchTerm;
 
             var searchResults = new List<UserDetails>();
-            if (!String.IsNullOrEmpty(searchTerm))
+            if (!String.IsNullOrEmpty(searchTerm) && db.UsersDetails.Where(s => s.DotNet
+                  == true).Count() != 0)
             {
                 page = 1;
 
@@ -270,7 +275,8 @@ namespace memberSite.Controllers
             ViewBag.CurrentFilter = searchTerm;
 
             var searchResults = new List<UserDetails>();
-            if (!String.IsNullOrEmpty(searchTerm))
+            if (!String.IsNullOrEmpty(searchTerm) && db.UsersDetails.Where(s => s.iOS
+                  == true).Count() != 0)
             {
                 page = 1;
 
@@ -307,7 +313,8 @@ namespace memberSite.Controllers
             ViewBag.CurrentFilter = searchTerm;
 
             var searchResults = new List<UserDetails>();
-            if (!String.IsNullOrEmpty(searchTerm))
+            if (!String.IsNullOrEmpty(searchTerm) && db.UsersDetails.Where(s => s.Android
+                  == true).Count() != 0)
             {
                 page = 1;
 
@@ -344,7 +351,8 @@ namespace memberSite.Controllers
             ViewBag.CurrentFilter = searchTerm;
 
             var searchResults = new List<UserDetails>();
-            if (!String.IsNullOrEmpty(searchTerm))
+            if (!String.IsNullOrEmpty(searchTerm) && db.UsersDetails.Where(s => s.Mentor
+                 == true).Count() != 0 )
             {
                 page = 1;
 
