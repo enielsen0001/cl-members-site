@@ -178,31 +178,33 @@ namespace memberSite.Controllers
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    //string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new
-                    //{
-                    //    userId = user.Id,
-                    //    code = code
-                    //}, protocol: Request.Url.Scheme);
-                    //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new
+                    {
+                        userId = user.Id,
+                        code = code
+                    }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    //return RedirectToAction("Index", "Home");
+                    //stop here and redirect ot auth page
+
+                    return RedirectToAction("Index", "Home");
                     //redirect to fill out profile
 
 
-                    UserManager.AddToRole(user.Id, model.SelectedMemberRole);
-                    if (UserManager.GetRoles(user.Id).FirstOrDefault() == "Employer")
-                    {
-                        return RedirectToAction("Index", "Employer");
-                    }
-                    if (UserManager.GetRoles(user.Id).FirstOrDefault() == "Alumni")
-                    {
-                        return RedirectToAction("Create", "UserDetails");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    //UserManager.AddToRole(user.Id, model.SelectedMemberRole);
+                    //if (UserManager.GetRoles(user.Id).FirstOrDefault() == "Employer")
+                    //{
+                    //    return RedirectToAction("Index", "Employer");
+                    //}
+                    //if (UserManager.GetRoles(user.Id).FirstOrDefault() == "Alumni")
+                    //{
+                    //    return RedirectToAction("Create", "UserDetails");
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToAction("Index", "Home");
+                    //}
 
                 }
 

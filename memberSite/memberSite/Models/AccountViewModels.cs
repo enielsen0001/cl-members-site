@@ -80,7 +80,7 @@ namespace memberSite.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required(ErrorMessage = "Member Role is required")]
+        //[Required(ErrorMessage = "Member Role is required")]
         [Display(Name = "Are you an employer or alumni? ")]
         public string SelectedMemberRole
         {
