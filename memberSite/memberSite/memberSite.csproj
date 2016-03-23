@@ -18,10 +18,11 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -185,29 +186,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603111520061_firstMigration.cs" />
-    <Compile Include="Migrations\201603111520061_firstMigration.Designer.cs">
-      <DependentUpon>201603111520061_firstMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603141637191_addedJobPost.cs" />
-    <Compile Include="Migrations\201603141637191_addedJobPost.Designer.cs">
-      <DependentUpon>201603141637191_addedJobPost.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603141646455_Added Company.cs" />
-    <Compile Include="Migrations\201603141646455_Added Company.Designer.cs">
-      <DependentUpon>201603141646455_Added Company.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603151353043_updateUserProfileBadges.cs" />
-    <Compile Include="Migrations\201603151353043_updateUserProfileBadges.Designer.cs">
-      <DependentUpon>201603151353043_updateUserProfileBadges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603182028348_changed_Account_view_modea.cs" />
-    <Compile Include="Migrations\201603182028348_changed_Account_view_modea.Designer.cs">
-      <DependentUpon>201603182028348_changed_Account_view_modea.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603221417496_added user id to job posts.cs" />
-    <Compile Include="Migrations\201603221417496_added user id to job posts.Designer.cs">
-      <DependentUpon>201603221417496_added user id to job posts.cs</DependentUpon>
+    <Compile Include="Migrations\201603231910181_init.cs" />
+    <Compile Include="Migrations\201603231910181_init.Designer.cs">
+      <DependentUpon>201603231910181_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -253,7 +234,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -321,23 +304,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603111520061_firstMigration.resx">
-      <DependentUpon>201603111520061_firstMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603141637191_addedJobPost.resx">
-      <DependentUpon>201603141637191_addedJobPost.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603141646455_Added Company.resx">
-      <DependentUpon>201603141646455_Added Company.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603151353043_updateUserProfileBadges.resx">
-      <DependentUpon>201603151353043_updateUserProfileBadges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603182028348_changed_Account_view_modea.resx">
-      <DependentUpon>201603182028348_changed_Account_view_modea.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603221417496_added user id to job posts.resx">
-      <DependentUpon>201603221417496_added user id to job posts.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603231910181_init.resx">
+      <DependentUpon>201603231910181_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

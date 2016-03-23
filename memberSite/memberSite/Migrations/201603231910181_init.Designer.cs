@@ -7,13 +7,13 @@ namespace memberSite.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addedJobPost : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addedJobPost));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603141637191_addedJobPost"; }
+            get { return "201603231910181_init"; }
         }
         
         string IMigrationMetadata.Source

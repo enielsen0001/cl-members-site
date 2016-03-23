@@ -149,9 +149,9 @@ namespace memberSite.Controllers
             var roles = new List<SelectListItem>();
             roles.Add(new SelectListItem() { Text = "Alumni", Value = "Alumni" });
             roles.Add(new SelectListItem() { Text = "Employer", Value = "Employer" });
-            
-  
 
+
+            ViewBag.MemberRoles = roles;
             
 
             return View();
@@ -211,7 +211,7 @@ namespace memberSite.Controllers
              var roles = new List<SelectListItem>();
             roles.Add(new SelectListItem() { Text = "Alumni", Value = "Alumni" });
             roles.Add(new SelectListItem() { Text = "Employer", Value = "Employer" });
-            
+            ViewBag.MemberRoles = roles;
             return View(model);
         }
 
