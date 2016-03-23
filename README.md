@@ -7,6 +7,7 @@
 <li>Implement password recover and email confirmation</li>
 <li>Implement GitHub Oauth</li>
 <li>fix various style issues</li>
+<li>further testing and user feedback from target audience</li>
 </ul>
 
 
