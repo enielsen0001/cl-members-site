@@ -11,6 +11,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using memberSite.Models;
+using System.Configuration;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mail;
+using SendGrid;
+using memberSite;
 
 namespace memberSite
 {
@@ -19,9 +25,40 @@ namespace memberSite
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            return configSendGridasync(message);
+
+        }
+
+        private Task configSendGridasync(IdentityMessage message)
+        {
+            var myMessage = new SendGrid.SendGridMessage();
+            myMessage.AddTo(message.Destination);
+            myMessage.From = new System.Net.Mail.MailAddress(
+                                "codelouisvillealumni@gmail.com", "Code Louisville Alumni");
+            myMessage.Subject = message.Subject;
+            myMessage.Text = message.Body;
+            myMessage.Html = message.Body;
+
+            var credentials = new NetworkCredential(
+                       ConfigurationManager.AppSettings["mailAccount"],
+                       ConfigurationManager.AppSettings["mailPassword"]
+                       );
+
+            // Create a Web transport for sending email.
+            var transportWeb = new Web(credentials);
+
+            // Send the email.
+            if (transportWeb != null)
+            {
+                return transportWeb.DeliverAsync(myMessage);
+            }
+            else
+            {
+                return Task.FromResult(0);
+            }
         }
     }
+
 
     public class SmsService : IIdentityMessageService
     {
@@ -107,3 +144,4 @@ namespace memberSite
         }
     }
 }
+
