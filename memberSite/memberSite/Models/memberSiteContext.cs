@@ -8,8 +8,20 @@ namespace memberSite.Models
 {
     public class MemberSiteDB : DbContext
     {
-        public MemberSiteDB() : base("name=DefaultConnection")
+        private string _schemaName = string.Empty;
+
+        public MemberSiteDB(string connectionName, string schemaName) :base(connectionName)
         {
+            _schemaName = schemaName;
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer<MemberSiteDB>(new CreateDatabaseIfNotExists<MemberSiteDB>());
+            modelBuilder.Entity<UserDetails>().ToTable("UsersDetails", _schemaName);
+            modelBuilder.Entity<Comment>().ToTable("Comments", _schemaName);
+            modelBuilder.Entity<JobPost>().ToTable("JobPosts", _schemaName);
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<UserDetails> UsersDetails
