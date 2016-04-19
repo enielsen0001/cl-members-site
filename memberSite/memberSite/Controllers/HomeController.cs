@@ -26,5 +26,13 @@ namespace memberSite.Controllers
 
             return View();
         }
+
+        #region -- Robots() Method --
+        public ActionResult Robots()
+        {
+            Response.ContentType = "text/plain";
+            return View();
+        }
+        #endregion
     }
 }

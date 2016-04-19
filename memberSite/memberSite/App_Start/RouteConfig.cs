@@ -21,6 +21,14 @@ namespace memberSite
                     controller = "Home",
                     action = "Index",
                     id = UrlParameter.Optional
+                });
+
+            routes.MapRoute("Robots.txt",
+                "robots.txt",
+                new
+                {
+                    controller = "Home",
+                    action = "Robots"
                 }
             );
         }
