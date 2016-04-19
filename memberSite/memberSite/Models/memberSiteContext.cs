@@ -1,5 +1,6 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -8,21 +9,25 @@ namespace memberSite.Models
 {
     public class MemberSiteDB : DbContext
     {
-        private string _schemaName = string.Empty;
+        
 
-        public MemberSiteDB(string connectionName, string schemaName) :base(connectionName)
+        public MemberSiteDB() :base("DefaultConnection")
         {
-            _schemaName = schemaName;
+            
+        }
+
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer<MemberSiteDB>(new CreateDatabaseIfNotExists<MemberSiteDB>());
-            modelBuilder.Entity<UserDetails>().ToTable("UsersDetails", _schemaName);
-            modelBuilder.Entity<Comment>().ToTable("Comments", _schemaName);
-            modelBuilder.Entity<JobPost>().ToTable("JobPosts", _schemaName);
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MemberSiteDB, Migrations.
+                Configuration>());
             base.OnModelCreating(modelBuilder);
         }
+
 
         public DbSet<UserDetails> UsersDetails
         {
