@@ -256,6 +256,7 @@
     <Content Include="images\CLAheader_logo.png" />
     <Content Include="images\CLAlogo.jpg" />
     <Content Include="images\Hydrangeas.jpg" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
