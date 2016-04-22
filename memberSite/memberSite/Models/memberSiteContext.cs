@@ -11,20 +11,20 @@ namespace memberSite.Models
     {
         
 
-        public MemberSiteDB() :base("DefaultConnection")
+        public MemberSiteDB() :base("name=DefaultConnection")
         {
             
         }
 
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
+        //public static ApplicationDbContext Create()
+        //{
+        //    return new ApplicationDbContext();
+        //}
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MemberSiteDB, Migrations.
-                Configuration>());
+        //    Database.SetInitializer(new MigrateDatabaseToLatestVersion<MemberSiteDB, Migrations.
+        //        Configuration>());
             base.OnModelCreating(modelBuilder);
         }
 
