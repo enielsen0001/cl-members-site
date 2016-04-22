@@ -75,7 +75,7 @@ namespace memberSite.Controllers
         }
 
         // GET: JobPosts/Create
-        [Authorize(Roles = "Admin, Employer")]
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -83,7 +83,7 @@ namespace memberSite.Controllers
 
         // POST: JobPosts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        [Authorize(Roles = "Admin, Employer")]
+        [Authorize]
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -105,7 +105,7 @@ namespace memberSite.Controllers
         }
 
         // GET: JobPosts/Edit/5
-        [Authorize(Roles = "Admin, Employer")]
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -131,7 +131,7 @@ namespace memberSite.Controllers
         // POST: JobPosts/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin, Employer")]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Title,PostBody,Company")] JobPost jobPost)
@@ -148,7 +148,7 @@ namespace memberSite.Controllers
         }
 
         // GET: JobPosts/Delete/5
-        [Authorize(Roles = "Admin, Employer")]
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -172,7 +172,7 @@ namespace memberSite.Controllers
         }
 
         // POST: JobPosts/Delete/5
-        [Authorize(Roles = "Admin, Employer")]
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

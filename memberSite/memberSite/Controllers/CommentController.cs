@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace memberSite.Controllers
 {
-    [Authorize(Roles = "Admin, Alumni")]
+    [Authorize]
     public class CommentController : Controller
     {
         private MemberSiteDB db = new MemberSiteDB();

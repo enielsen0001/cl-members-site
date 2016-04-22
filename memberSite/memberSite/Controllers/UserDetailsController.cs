@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace memberSite.Controllers
 {
-    [Authorize(Roles = "Admin, Alumni")]
+    [Authorize]
     public class UserDetailsController : Controller
     {
         private MemberSiteDB db = new MemberSiteDB();
