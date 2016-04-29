@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title</h2>
 <div class="row">
-    <div class="col-md-8">
+    @*<div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new
             {
@@ -75,11 +75,11 @@
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
+                    </p>
             }
         </section>
-    </div>
-    <div class="col-md-4">
+    </div>*@
+    <div class="col-md-6">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>

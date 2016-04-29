@@ -53,7 +53,7 @@ namespace memberSite.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login(string returnUrl = "~/Home")
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -69,6 +69,7 @@ namespace memberSite.Controllers
             if (!ModelState.IsValid)
             {
                 return View(model);
+               
             }
 
             // This doesn't count login failures towards account lockout
@@ -415,6 +416,7 @@ namespace memberSite.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Manage");
+
             }
 
             if (ModelState.IsValid)
