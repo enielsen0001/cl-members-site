@@ -9,13 +9,9 @@
     {
         cLayout = "~/Views/Shared/_AdminLayout.cshtml";
     }
-    if (User.IsInRole("Alumni"))
+    if (User.Identity.IsAuthenticated)
     {
-        cLayout = "~/Views/Shared/_AlumniLayout.cshtml";
-    }
-    if (User.IsInRole("Employer"))
-    {
-        cLayout = "~/Views/Shared/_EmployerLayout.cshtml";
+        cLayout = "~/Views/Shared/_LoggedInLayout.cshtml";
     }
     else
     {
