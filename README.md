@@ -1,5 +1,5 @@
 # cl-members-site
-
+<a="http://clalumni.apphb.com">Visit the development site on AppHarbor</a>
 <h3>Things still in the queue:</h3>
 <ul>
 <li>pull badges out of details and into another table and update models/views</li>
