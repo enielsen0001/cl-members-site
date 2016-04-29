@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
+using Owin.Security.Providers.LinkedIn;
 using Owin;
 using memberSite.Models;
 
@@ -58,11 +59,15 @@ namespace memberSite
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "84573371016-ieklg0cb1h6l9b4kiagv10iu9871ml0j.apps.googleusercontent.com",
+                ClientSecret = "cJJfsoSjipz9ypraNH34C0JL"
+            });
+
+            app.UseLinkedInAuthentication(
+                clientId: "77zb00nvudj44z",
+                clientSecret: "YJJRpJ1YPVf3DkQL");
         }
     }
 }
