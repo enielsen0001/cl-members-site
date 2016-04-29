@@ -61,8 +61,8 @@ namespace memberSite
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "84573371016-ieklg0cb1h6l9b4kiagv10iu9871ml0j.apps.googleusercontent.com",
-                ClientSecret = "cJJfsoSjipz9ypraNH34C0JL"
+                ClientId = "453652359876-4td7phcis9c7ubq793nhojpm6phfinod.apps.googleusercontent.com",
+                ClientSecret = "Uss6ptaiePtzZ5gNMiF9W5qw"
             });
 
             app.UseLinkedInAuthentication(
